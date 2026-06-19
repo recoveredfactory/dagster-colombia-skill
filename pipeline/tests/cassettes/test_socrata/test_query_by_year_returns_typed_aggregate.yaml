@@ -1,0 +1,70 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Host:
+      - www.datos.gov.co
+      User-Agent:
+      - colombia-open-data-skill/0.1 (+recoveredfactory/dagster-colombia-skill)
+    method: GET
+    uri: https://www.datos.gov.co/resource/n48w-gutb.json?$select=anno,sum(no_de_accesos::number)%20as%20accesos&$group=anno&$order=anno
+  response:
+    body:
+      string: '[{"anno":"2016","accesos":"463"}
+
+        ,{"anno":"2017","accesos":"21252904"}
+
+        ,{"anno":"2018","accesos":"26451239"}
+
+        ,{"anno":"2019","accesos":"27712863"}
+
+        ,{"anno":"2020","accesos":"30219989"}
+
+        ,{"anno":"2021","accesos":"33274299"}
+
+        ,{"anno":"2022","accesos":"35192882"}
+
+        ,{"anno":"2023","accesos":"26995940"}]
+
+        '
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - close
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Fri, 19 Jun 2026 02:16:47 GMT
+      ETag:
+      - W/"Z29sZi4xNTM2N184XzE5NEdTUmxlVzNVRVFsYkhfcXhSTEFkb3E4a19jRQ---gzir9LDH3EShx4NsHhKoBAN_JMiw6l--gzip--gzip"
+      Last-Modified:
+      - Fri, 23 Feb 2024 21:31:08 GMT
+      Server:
+      - nginx
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-SODA2-Data-Out-Of-Date:
+      - 'false'
+      X-SODA2-Fields:
+      - '["anno","accesos"]'
+      X-SODA2-Secondary-Last-Modified:
+      - Fri, 23 Feb 2024 21:31:08 GMT
+      X-SODA2-Truth-Last-Modified:
+      - Fri, 23 Feb 2024 21:31:08 GMT
+      X-SODA2-Types:
+      - '["text","number"]'
+      X-Socrata-Region:
+      - aws-us-east-1-fedramp-prod
+      X-Socrata-RequestId:
+      - 6de3b948961fe29768ac71ffa43b0155
+    status:
+      code: 200
+      message: OK
+version: 1

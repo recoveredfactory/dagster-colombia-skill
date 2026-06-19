@@ -1,0 +1,167 @@
+[
+  {
+    "cod_departamento": "11",
+    "departamento": "Bogotá D.C.",
+    "accesos": 53957365
+  },
+  {
+    "cod_departamento": "05",
+    "departamento": "Antioquia",
+    "accesos": 35342014
+  },
+  {
+    "cod_departamento": "76",
+    "departamento": "Valle Del Cauca",
+    "accesos": 21783112
+  },
+  {
+    "cod_departamento": "25",
+    "departamento": "Cundinamarca",
+    "accesos": 12850353
+  },
+  {
+    "cod_departamento": "08",
+    "departamento": "Atlántico",
+    "accesos": 10366668
+  },
+  {
+    "cod_departamento": "68",
+    "departamento": "Santander",
+    "accesos": 9668325
+  },
+  {
+    "cod_departamento": "13",
+    "departamento": "Bolívar",
+    "accesos": 5551870
+  },
+  {
+    "cod_departamento": "66",
+    "departamento": "Risaralda",
+    "accesos": 5059700
+  },
+  {
+    "cod_departamento": "73",
+    "departamento": "Tolima",
+    "accesos": 4697547
+  },
+  {
+    "cod_departamento": "54",
+    "departamento": "Norte De Santander",
+    "accesos": 4364663
+  },
+  {
+    "cod_departamento": "17",
+    "departamento": "Caldas",
+    "accesos": 3772203
+  },
+  {
+    "cod_departamento": "50",
+    "departamento": "Meta",
+    "accesos": 3629674
+  },
+  {
+    "cod_departamento": "15",
+    "departamento": "Boyacá",
+    "accesos": 3537632
+  },
+  {
+    "cod_departamento": "41",
+    "departamento": "Huila",
+    "accesos": 3205852
+  },
+  {
+    "cod_departamento": "47",
+    "departamento": "Magdalena",
+    "accesos": 3061158
+  },
+  {
+    "cod_departamento": "63",
+    "departamento": "Quindío",
+    "accesos": 2917170
+  },
+  {
+    "cod_departamento": "52",
+    "departamento": "Nariño",
+    "accesos": 2880370
+  },
+  {
+    "cod_departamento": "20",
+    "departamento": "Cesar",
+    "accesos": 2860769
+  },
+  {
+    "cod_departamento": "23",
+    "departamento": "Córdoba",
+    "accesos": 2857643
+  },
+  {
+    "cod_departamento": "19",
+    "departamento": "Cauca",
+    "accesos": 2244148
+  },
+  {
+    "cod_departamento": "70",
+    "departamento": "Sucre",
+    "accesos": 1557342
+  },
+  {
+    "cod_departamento": "44",
+    "departamento": "La Guajira",
+    "accesos": 1238957
+  },
+  {
+    "cod_departamento": "85",
+    "departamento": "Casanare",
+    "accesos": 1156829
+  },
+  {
+    "cod_departamento": "18",
+    "departamento": "Caqueta",
+    "accesos": 747356
+  },
+  {
+    "cod_departamento": "27",
+    "departamento": "Chocó",
+    "accesos": 630158
+  },
+  {
+    "cod_departamento": "81",
+    "departamento": "Arauca",
+    "accesos": 495058
+  },
+  {
+    "cod_departamento": "86",
+    "departamento": "Putumayo",
+    "accesos": 387977
+  },
+  {
+    "cod_departamento": "88",
+    "departamento": "Archipiélago De San Andrés, Providencia Y Santa Catalina",
+    "accesos": 132204
+  },
+  {
+    "cod_departamento": "95",
+    "departamento": "Guaviare",
+    "accesos": 56970
+  },
+  {
+    "cod_departamento": "99",
+    "departamento": "Vichada",
+    "accesos": 32384
+  },
+  {
+    "cod_departamento": "91",
+    "departamento": "Amazonas",
+    "accesos": 29361
+  },
+  {
+    "cod_departamento": "94",
+    "departamento": "Guainía",
+    "accesos": 25695
+  },
+  {
+    "cod_departamento": "97",
+    "departamento": "Vaupés",
+    "accesos": 1885
+  }
+]

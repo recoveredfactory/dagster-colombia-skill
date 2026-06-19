@@ -1,0 +1,374 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Host:
+      - www.datos.gov.co
+      User-Agent:
+      - colombia-open-data-skill/0.1 (+recoveredfactory/dagster-colombia-skill)
+    method: GET
+    uri: https://www.datos.gov.co/api/views/n48w-gutb.json
+  response:
+    body:
+      string: "{\n  \"id\" : \"n48w-gutb\",\n  \"name\" : \"Internet Fijo Accesos
+        por tecnolog\xEDa y segmento\",\n  \"assetType\" : \"dataset\",\n  \"attribution\"
+        : \"Ministerio de Tecnolog\xEDas de la Informaci\xF3n y las Comunicaciones
+        - MinTIC, Bogot\xE1 D.C.\",\n  \"attributionLink\" : \"http://colombiatic.mintic.gov.co/\",\n
+        \ \"averageRating\" : 0,\n  \"category\" : \"Ciencia, Tecnolog\xEDa e Innovaci\xF3n\",\n
+        \ \"createdAt\" : 1527794518,\n  \"description\" : \"N\xFAmero de suscriptores
+        con acceso dedicado a Internet para cada uno de los departamentos y municipios
+        de Colombia, seg\xFAn los datos reportados por los proveedores al \xFAltimo
+        d\xEDa de cada trimestre. Basados en estos datos y en las proyecciones del
+        DANE para la poblaci\xF3n por municipio, departamento y en total en Colombia,
+        se muestra el porcentaje de penetraci\xF3n de Internet fijo. Periodo 2015-4T
+        2019-1T\",\n  \"diciBackend\" : false,\n  \"displayType\" : \"table\",\n  \"downloadCount\"
+        : 7659,\n  \"hideFromCatalog\" : false,\n  \"hideFromDataJson\" : false,\n
+        \ \"licenseId\" : \"CC_40_BY_SA\",\n  \"locale\" : \"en_US\",\n  \"locked\"
+        : false,\n  \"newBackend\" : true,\n  \"numberOfComments\" : 0,\n  \"oid\"
+        : 37929376,\n  \"provenance\" : \"official\",\n  \"publicationAppendEnabled\"
+        : false,\n  \"publicationDate\" : 1636580214,\n  \"publicationGroup\" : 15238230,\n
+        \ \"publicationStage\" : \"published\",\n  \"rowsUpdatedAt\" : 1708723927,\n
+        \ \"tableId\" : 18507272,\n  \"totalTimesRated\" : 0,\n  \"viewCount\" : 22576,\n
+        \ \"viewLastModified\" : 1779123326,\n  \"viewType\" : \"tabular\",\n  \"approvals\"
+        : [ {\n    \"reviewedAt\" : 1533309040,\n    \"reviewedAutomatically\" : true,\n
+        \   \"state\" : \"approved\",\n    \"submissionId\" : 4218991,\n    \"submissionObject\"
+        : \"public_audience_request\",\n    \"submissionOutcome\" : \"change_audience\",\n
+        \   \"submittedAt\" : 1533309040,\n    \"targetAudience\" : \"public\",\n
+        \   \"workflowId\" : 2188,\n    \"submissionDetails\" : {\n      \"permissionType\"
+        : \"READ\"\n    },\n    \"submissionOutcomeApplication\" : {\n      \"failureCount\"
+        : 0,\n      \"status\" : \"success\"\n    },\n    \"submitter\" : {\n      \"id\"
+        : \"cw5t-ib5h\",\n      \"displayName\" : \"Ministerio TIC Oficina TI Gesti\xF3n
+        de Informacion\"\n    }\n  } ],\n  \"clientContext\" : {\n    \"clientContextVariables\"
+        : [ ],\n    \"inheritedVariables\" : { }\n  },\n  \"columns\" : [ {\n    \"id\"
+        : 551577974,\n    \"name\" : \"A\xD1O\",\n    \"dataTypeName\" : \"text\",\n
+        \   \"description\" : \"\",\n    \"fieldName\" : \"anno\",\n    \"position\"
+        : 1,\n    \"renderTypeName\" : \"text\",\n    \"tableColumnId\" : 114762210,\n
+        \   \"width\" : 150,\n    \"cachedContents\" : {\n      \"non_null\" : \"2795052\",\n
+        \     \"largest\" : \"2023\",\n      \"null\" : \"0\",\n      \"top\" : [
+        {\n        \"item\" : \"2022\",\n        \"count\" : \"754858\"\n      },
+        {\n        \"item\" : \"2023\",\n        \"count\" : \"614227\"\n      },
+        {\n        \"item\" : \"2021\",\n        \"count\" : \"399848\"\n      },
+        {\n        \"item\" : \"2020\",\n        \"count\" : \"342123\"\n      },
+        {\n        \"item\" : \"2019\",\n        \"count\" : \"293282\"\n      },
+        {\n        \"item\" : \"2018\",\n        \"count\" : \"233772\"\n      },
+        {\n        \"item\" : \"2017\",\n        \"count\" : \"156886\"\n      },
+        {\n        \"item\" : \"2016\",\n        \"count\" : \"56\"\n      } ],\n
+        \     \"smallest\" : \"2016\",\n      \"count\" : \"2795052\",\n      \"cardinality\"
+        : \"2795052\"\n    },\n    \"format\" : { }\n  }, {\n    \"id\" : 551577975,\n
+        \   \"name\" : \"TRIMESTRE\",\n    \"dataTypeName\" : \"text\",\n    \"description\"
+        : \"\",\n    \"fieldName\" : \"trimestre\",\n    \"position\" : 2,\n    \"renderTypeName\"
+        : \"text\",\n    \"tableColumnId\" : 114762209,\n    \"width\" : 165,\n    \"cachedContents\"
+        : {\n      \"non_null\" : \"2795052\",\n      \"largest\" : \"4\",\n      \"null\"
+        : \"0\",\n      \"top\" : [ {\n        \"item\" : \"3\",\n        \"count\"
+        : \"774134\"\n      }, {\n        \"item\" : \"2\",\n        \"count\" : \"746674\"\n
+        \     }, {\n        \"item\" : \"1\",\n        \"count\" : \"693804\"\n      },
+        {\n        \"item\" : \"4\",\n        \"count\" : \"580440\"\n      } ],\n
+        \     \"smallest\" : \"1\",\n      \"count\" : \"2795052\",\n      \"cardinality\"
+        : \"2795052\"\n    },\n    \"format\" : { }\n  }, {\n    \"id\" : 551577976,\n
+        \   \"name\" : \"PROVEEDOR\",\n    \"dataTypeName\" : \"text\",\n    \"description\"
+        : \"\",\n    \"fieldName\" : \"proveedor\",\n    \"position\" : 3,\n    \"renderTypeName\"
+        : \"text\",\n    \"tableColumnId\" : 65500851,\n    \"width\" : 208,\n    \"cachedContents\"
+        : {\n      \"non_null\" : \"2795052\",\n      \"largest\" : \"ZUMA COMUNICACIONES
+        DE COLOMBIA S.A.S\",\n      \"null\" : \"0\",\n      \"top\" : [ {\n        \"item\"
+        : \"COMUNICACION CELULAR S A COMCEL S A\",\n        \"count\" : \"609664\"\n
+        \     }, {\n        \"item\" : \"COLOMBIA TELECOMUNICACIONES S.A. E.S.P.\",\n
+        \       \"count\" : \"490016\"\n      }, {\n        \"item\" : \"UNE EPM TELECOMUNICACIONES
+        S.A.\",\n        \"count\" : \"296770\"\n      }, {\n        \"item\" : \"AZTECA
+        COMUNICACIONES COLOMBIA S.A.S\",\n        \"count\" : \"229370\"\n      },
+        {\n        \"item\" : \"EDATEL S.A.\",\n        \"count\" : \"154537\"\n      },
+        {\n        \"item\" : \"DIRECTV COLOMBIA LTDA\",\n        \"count\" : \"121158\"\n
+        \     }, {\n        \"item\" : \"HUGHES DE COLOMBIA S.A.S.\",\n        \"count\"
+        : \"108067\"\n      }, {\n        \"item\" : \"EMPRESA DE TELECOMUNICACIONES
+        DE BOGOTA S.A. ESP\",\n        \"count\" : \"64383\"\n      }, {\n        \"item\"
+        : \"TELMEX COLOMBIA S.A.\",\n        \"count\" : \"47300\"\n      }, {\n        \"item\"
+        : \"LEGON TELECOMUNICACIONES S.A.S.\",\n        \"count\" : \"46647\"\n      },
+        {\n        \"item\" : \"AXESS NETWORKS SOLUTIONS COLOMBIA SAS\",\n        \"count\"
+        : \"43009\"\n      }, {\n        \"item\" : \"MEDIA COMMERCE PARTNERS S.A.\",\n
+        \       \"count\" : \"26788\"\n      }, {\n        \"item\" : \"H V TELEVISION
+        S.A.S.\",\n        \"count\" : \"25762\"\n      }, {\n        \"item\" : \"CENTURYLINK
+        COLOMBIA S.A.\",\n        \"count\" : \"17313\"\n      }, {\n        \"item\"
+        : \"TV AZTECA SUCURSAL COLOMBIA\",\n        \"count\" : \"14926\"\n      },
+        {\n        \"item\" : \"IFX NETWORKS COLOMBIA S.A.S.\",\n        \"count\"
+        : \"12395\"\n      }, {\n        \"item\" : \"SINERGY SOLUCIONES INTEGRALES
+        S.A.S\",\n        \"count\" : \"12014\"\n      }, {\n        \"item\" : \"DIALNET
+        DE COLOMBIA S.A   ESP.\",\n        \"count\" : \"11833\"\n      }, {\n        \"item\"
+        : \"EMPRESA DE TELECOMUNICACIONES DE POPAYAN S.A EMTEL E.S.P\",\n        \"count\"
+        : \"11228\"\n      }, {\n        \"item\" : \"EMPRESAS MUNICIPALES DE CALI
+        EICE E.S.P\",\n        \"count\" : \"10230\"\n      } ],\n      \"smallest\"
+        : \"10COM SAS\",\n      \"count\" : \"2795052\",\n      \"cardinality\" :
+        \"2795052\"\n    },\n    \"format\" : { }\n  }, {\n    \"id\" : 551577984,\n
+        \   \"name\" : \"COD_DEPARTAMENTO\",\n    \"dataTypeName\" : \"text\",\n    \"description\"
+        : \"\",\n    \"fieldName\" : \"cod_departamento\",\n    \"position\" : 4,\n
+        \   \"renderTypeName\" : \"text\",\n    \"tableColumnId\" : 139990678,\n    \"cachedContents\"
+        : {\n      \"non_null\" : \"2795047\",\n      \"largest\" : \"99\",\n      \"null\"
+        : \"5\",\n      \"top\" : [ {\n        \"item\" : \"05\",\n        \"count\"
+        : \"408403\"\n      }, {\n        \"item\" : \"25\",\n        \"count\" :
+        \"381321\"\n      }, {\n        \"item\" : \"76\",\n        \"count\" : \"256229\"\n
+        \     }, {\n        \"item\" : \"68\",\n        \"count\" : \"176953\"\n      },
+        {\n        \"item\" : \"15\",\n        \"count\" : \"143370\"\n      }, {\n
+        \       \"item\" : \"73\",\n        \"count\" : \"105115\"\n      }, {\n        \"item\"
+        : \"08\",\n        \"count\" : \"98811\"\n      }, {\n        \"item\" : \"17\",\n
+        \       \"count\" : \"98548\"\n      }, {\n        \"item\" : \"54\",\n        \"count\"
+        : \"93347\"\n      }, {\n        \"item\" : \"66\",\n        \"count\" : \"86039\"\n
+        \     }, {\n        \"item\" : \"11\",\n        \"count\" : \"83293\"\n      },
+        {\n        \"item\" : \"41\",\n        \"count\" : \"82686\"\n      }, {\n
+        \       \"item\" : \"13\",\n        \"count\" : \"81365\"\n      }, {\n        \"item\"
+        : \"19\",\n        \"count\" : \"76312\"\n      }, {\n        \"item\" : \"50\",\n
+        \       \"count\" : \"75931\"\n      }, {\n        \"item\" : \"23\",\n        \"count\"
+        : \"75657\"\n      }, {\n        \"item\" : \"52\",\n        \"count\" : \"75456\"\n
+        \     }, {\n        \"item\" : \"63\",\n        \"count\" : \"71349\"\n      },
+        {\n        \"item\" : \"47\",\n        \"count\" : \"55773\"\n      }, {\n
+        \       \"item\" : \"20\",\n        \"count\" : \"55278\"\n      } ],\n      \"smallest\"
+        : \"05\",\n      \"count\" : \"2795052\",\n      \"cardinality\" : \"2795052\"\n
+        \   },\n    \"format\" : { }\n  }, {\n    \"id\" : 551577977,\n    \"name\"
+        : \"DEPARTAMENTO\",\n    \"dataTypeName\" : \"text\",\n    \"description\"
+        : \"\",\n    \"fieldName\" : \"departamento\",\n    \"position\" : 5,\n    \"renderTypeName\"
+        : \"text\",\n    \"tableColumnId\" : 65500852,\n    \"width\" : 244,\n    \"cachedContents\"
+        : {\n      \"non_null\" : \"2795052\",\n      \"largest\" : \"VICHADA\",\n
+        \     \"null\" : \"0\",\n      \"top\" : [ {\n        \"item\" : \"ANTIOQUIA\",\n
+        \       \"count\" : \"408403\"\n      }, {\n        \"item\" : \"CUNDINAMARCA\",\n
+        \       \"count\" : \"381321\"\n      }, {\n        \"item\" : \"VALLE DEL
+        CAUCA\",\n        \"count\" : \"256229\"\n      }, {\n        \"item\" : \"SANTANDER\",\n
+        \       \"count\" : \"176953\"\n      }, {\n        \"item\" : \"BOYAC\xC1\",\n
+        \       \"count\" : \"143370\"\n      }, {\n        \"item\" : \"TOLIMA\",\n
+        \       \"count\" : \"105115\"\n      }, {\n        \"item\" : \"ATL\xC1NTICO\",\n
+        \       \"count\" : \"98811\"\n      }, {\n        \"item\" : \"CALDAS\",\n
+        \       \"count\" : \"98548\"\n      }, {\n        \"item\" : \"NORTE DE SANTANDER\",\n
+        \       \"count\" : \"93347\"\n      }, {\n        \"item\" : \"RISARALDA\",\n
+        \       \"count\" : \"86039\"\n      }, {\n        \"item\" : \"BOGOT\xC1
+        D.C.\",\n        \"count\" : \"83293\"\n      }, {\n        \"item\" : \"HUILA\",\n
+        \       \"count\" : \"82686\"\n      }, {\n        \"item\" : \"BOL\xCDVAR\",\n
+        \       \"count\" : \"81365\"\n      }, {\n        \"item\" : \"CAUCA\",\n
+        \       \"count\" : \"76312\"\n      }, {\n        \"item\" : \"META\",\n
+        \       \"count\" : \"75931\"\n      }, {\n        \"item\" : \"C\xD3RDOBA\",\n
+        \       \"count\" : \"75657\"\n      }, {\n        \"item\" : \"NARI\xD1O\",\n
+        \       \"count\" : \"75456\"\n      }, {\n        \"item\" : \"QUIND\xCDO\",\n
+        \       \"count\" : \"71349\"\n      }, {\n        \"item\" : \"MAGDALENA\",\n
+        \       \"count\" : \"55773\"\n      }, {\n        \"item\" : \"CESAR\",\n
+        \       \"count\" : \"55278\"\n      } ],\n      \"smallest\" : \"AMAZONAS\",\n
+        \     \"count\" : \"2795052\",\n      \"cardinality\" : \"2795052\"\n    },\n
+        \   \"format\" : { }\n  }, {\n    \"id\" : 551577985,\n    \"name\" : \"COD_MUNICIPIO\",\n
+        \   \"dataTypeName\" : \"text\",\n    \"description\" : \"\",\n    \"fieldName\"
+        : \"cod_municipio\",\n    \"position\" : 6,\n    \"renderTypeName\" : \"text\",\n
+        \   \"tableColumnId\" : 139990679,\n    \"cachedContents\" : {\n      \"non_null\"
+        : \"2795042\",\n      \"largest\" : \"99773\",\n      \"null\" : \"10\",\n
+        \     \"top\" : [ {\n        \"item\" : \"11001\",\n        \"count\" : \"83293\"\n
+        \     }, {\n        \"item\" : \"76001\",\n        \"count\" : \"55863\"\n
+        \     }, {\n        \"item\" : \"08001\",\n        \"count\" : \"44046\"\n
+        \     }, {\n        \"item\" : \"05001\",\n        \"count\" : \"42087\"\n
+        \     }, {\n        \"item\" : \"13001\",\n        \"count\" : \"38664\"\n
+        \     }, {\n        \"item\" : \"73001\",\n        \"count\" : \"34232\"\n
+        \     }, {\n        \"item\" : \"68001\",\n        \"count\" : \"33580\"\n
+        \     }, {\n        \"item\" : \"50001\",\n        \"count\" : \"32012\"\n
+        \     }, {\n        \"item\" : \"66001\",\n        \"count\" : \"31687\"\n
+        \     }, {\n        \"item\" : \"19001\",\n        \"count\" : \"31425\"\n
+        \     }, {\n        \"item\" : \"47001\",\n        \"count\" : \"31320\"\n
+        \     }, {\n        \"item\" : \"54001\",\n        \"count\" : \"30523\"\n
+        \     }, {\n        \"item\" : \"63001\",\n        \"count\" : \"29551\"\n
+        \     }, {\n        \"item\" : \"52001\",\n        \"count\" : \"26852\"\n
+        \     }, {\n        \"item\" : \"25175\",\n        \"count\" : \"26587\"\n
+        \     }, {\n        \"item\" : \"23001\",\n        \"count\" : \"26539\"\n
+        \     }, {\n        \"item\" : \"17001\",\n        \"count\" : \"26118\"\n
+        \     }, {\n        \"item\" : \"20001\",\n        \"count\" : \"26091\"\n
+        \     }, {\n        \"item\" : \"25754\",\n        \"count\" : \"25070\"\n
+        \     }, {\n        \"item\" : \"68276\",\n        \"count\" : \"24590\"\n
+        \     } ],\n      \"smallest\" : \"05001\",\n      \"count\" : \"2795052\",\n
+        \     \"cardinality\" : \"2795052\"\n    },\n    \"format\" : { }\n  }, {\n
+        \   \"id\" : 551577978,\n    \"name\" : \"MUNICIPIO\",\n    \"dataTypeName\"
+        : \"text\",\n    \"description\" : \"\",\n    \"fieldName\" : \"municipio\",\n
+        \   \"position\" : 7,\n    \"renderTypeName\" : \"text\",\n    \"tableColumnId\"
+        : 65500853,\n    \"width\" : 208,\n    \"cachedContents\" : {\n      \"non_null\"
+        : \"2795052\",\n      \"largest\" : \"ZONA BANANERA\",\n      \"null\" : \"0\",\n
+        \     \"top\" : [ {\n        \"item\" : \"BOGOT\xC1, D.C.\",\n        \"count\"
+        : \"83293\"\n      }, {\n        \"item\" : \"CALI\",\n        \"count\" :
+        \"55863\"\n      }, {\n        \"item\" : \"BARRANQUILLA\",\n        \"count\"
+        : \"44046\"\n      }, {\n        \"item\" : \"MEDELL\xCDN\",\n        \"count\"
+        : \"42087\"\n      }, {\n        \"item\" : \"CARTAGENA\",\n        \"count\"
+        : \"38664\"\n      }, {\n        \"item\" : \"IBAGU\xC9\",\n        \"count\"
+        : \"34232\"\n      }, {\n        \"item\" : \"BUCARAMANGA\",\n        \"count\"
+        : \"33580\"\n      }, {\n        \"item\" : \"VILLAVICENCIO\",\n        \"count\"
+        : \"32012\"\n      }, {\n        \"item\" : \"PEREIRA\",\n        \"count\"
+        : \"31687\"\n      }, {\n        \"item\" : \"POPAY\xC1N\",\n        \"count\"
+        : \"31425\"\n      }, {\n        \"item\" : \"SANTA MARTA\",\n        \"count\"
+        : \"31320\"\n      }, {\n        \"item\" : \"ARMENIA\",\n        \"count\"
+        : \"30777\"\n      }, {\n        \"item\" : \"SAN JOS\xC9 DE C\xDACUTA\",\n
+        \       \"count\" : \"30523\"\n      }, {\n        \"item\" : \"PASTO\",\n
+        \       \"count\" : \"26852\"\n      }, {\n        \"item\" : \"CH\xCDA\",\n
+        \       \"count\" : \"26587\"\n      }, {\n        \"item\" : \"MONTER\xCDA\",\n
+        \       \"count\" : \"26539\"\n      }, {\n        \"item\" : \"MANIZALES\",\n
+        \       \"count\" : \"26118\"\n      }, {\n        \"item\" : \"VALLEDUPAR\",\n
+        \       \"count\" : \"26091\"\n      }, {\n        \"item\" : \"SOACHA\",\n
+        \       \"count\" : \"25070\"\n      }, {\n        \"item\" : \"FLORIDABLANCA\",\n
+        \       \"count\" : \"24590\"\n      } ],\n      \"smallest\" : \"ABEJORRAL\",\n
+        \     \"count\" : \"2795052\",\n      \"cardinality\" : \"2795052\"\n    },\n
+        \   \"format\" : { }\n  }, {\n    \"id\" : 551577979,\n    \"name\" : \"SEGMENTO\",\n
+        \   \"dataTypeName\" : \"text\",\n    \"description\" : \"\",\n    \"fieldName\"
+        : \"segmento\",\n    \"position\" : 8,\n    \"renderTypeName\" : \"text\",\n
+        \   \"tableColumnId\" : 65500854,\n    \"width\" : 196,\n    \"cachedContents\"
+        : {\n      \"non_null\" : \"2795052\",\n      \"largest\" : \"USO PROPIO INTERNO
+        DEL OPERADOR\",\n      \"null\" : \"0\",\n      \"top\" : [ {\n        \"item\"
+        : \"CORPORATIVO\",\n        \"count\" : \"893577\"\n      }, {\n        \"item\"
+        : \"RESIDENCIAL - ESTRATO 2\",\n        \"count\" : \"594438\"\n      }, {\n
+        \       \"item\" : \"RESIDENCIAL - ESTRATO 3\",\n        \"count\" : \"423739\"\n
+        \     }, {\n        \"item\" : \"RESIDENCIAL - ESTRATO 1\",\n        \"count\"
+        : \"418236\"\n      }, {\n        \"item\" : \"RESIDENCIAL - ESTRATO 4\",\n
+        \       \"count\" : \"224848\"\n      }, {\n        \"item\" : \"RESIDENCIAL
+        - ESTRATO 5\",\n        \"count\" : \"109898\"\n      }, {\n        \"item\"
+        : \"RESIDENCIAL - ESTRATO 6\",\n        \"count\" : \"85552\"\n      }, {\n
+        \       \"item\" : \"SIN ESTRATIFICAR\",\n        \"count\" : \"38396\"\n
+        \     }, {\n        \"item\" : \"USO PROPIO INTERNO DEL OPERADOR\",\n        \"count\"
+        : \"6368\"\n      } ],\n      \"smallest\" : \"CORPORATIVO\",\n      \"count\"
+        : \"2795052\",\n      \"cardinality\" : \"2795052\"\n    },\n    \"format\"
+        : { }\n  }, {\n    \"id\" : 551577980,\n    \"name\" : \"TECNOLOGIA\",\n    \"dataTypeName\"
+        : \"text\",\n    \"description\" : \"\",\n    \"fieldName\" : \"tecnologia\",\n
+        \   \"position\" : 9,\n    \"renderTypeName\" : \"text\",\n    \"tableColumnId\"
+        : 65500855,\n    \"width\" : 220,\n    \"cachedContents\" : {\n      \"non_null\"
+        : \"2795052\",\n      \"largest\" : \"XDSL\",\n      \"null\" : \"0\",\n      \"top\"
+        : [ {\n        \"item\" : \"CABLE\",\n        \"count\" : \"639283\"\n      },
+        {\n        \"item\" : \"FIBER TO THE HOME (FTTH)\",\n        \"count\" : \"630091\"\n
+        \     }, {\n        \"item\" : \"XDSL\",\n        \"count\" : \"510367\"\n
+        \     }, {\n        \"item\" : \"OTRAS TECNOLOG\xCDAS INAL\xC1MBRICAS\",\n
+        \       \"count\" : \"280690\"\n      }, {\n        \"item\" : \"HYBRID FIBER
+        COAXIAL (HFC)\",\n        \"count\" : \"212051\"\n      }, {\n        \"item\"
+        : \"SATELITAL\",\n        \"count\" : \"174319\"\n      }, {\n        \"item\"
+        : \"OTRAS TECNOLOG\xCDAS DE FIBRA (ANTES FTTX)\",\n        \"count\" : \"156455\"\n
+        \     }, {\n        \"item\" : \"WIFI\",\n        \"count\" : \"110824\"\n
+        \     }, {\n        \"item\" : \"FIBER TO THE BUILDING O FIBER TO THE BASEMENT
+        (FTTB)\",\n        \"count\" : \"20035\"\n      }, {\n        \"item\" : \"FIBER
+        TO THE CABINET (FTTC)\",\n        \"count\" : \"19992\"\n      }, {\n        \"item\"
+        : \"WIMAX\",\n        \"count\" : \"15981\"\n      }, {\n        \"item\"
+        : \"FIBER TO THE PREMISES\",\n        \"count\" : \"13299\"\n      }, {\n
+        \       \"item\" : \"OTRAS TECNOLOG\xCDAS FIJAS\",\n        \"count\" : \"7033\"\n
+        \     }, {\n        \"item\" : \"FIBER TO THE ANTENNA (FTTA)\",\n        \"count\"
+        : \"2594\"\n      }, {\n        \"item\" : \"FIBER TO THE NODE (FTTN)\",\n
+        \       \"count\" : \"1888\"\n      }, {\n        \"item\" : \"NA (NO APLICA)\",\n
+        \       \"count\" : \"150\"\n      } ],\n      \"smallest\" : \"CABLE\",\n
+        \     \"count\" : \"2795052\",\n      \"cardinality\" : \"2795052\"\n    },\n
+        \   \"format\" : { }\n  }, {\n    \"id\" : 551577981,\n    \"name\" : \"VELOCIDAD_BAJADA\",\n
+        \   \"dataTypeName\" : \"text\",\n    \"description\" : \"\",\n    \"fieldName\"
+        : \"velocidad_bajada\",\n    \"position\" : 10,\n    \"renderTypeName\" :
+        \"text\",\n    \"tableColumnId\" : 86515077,\n    \"width\" : 292,\n    \"cachedContents\"
+        : {\n      \"non_null\" : \"2795052\",\n      \"largest\" : \"99,97\",\n      \"null\"
+        : \"0\",\n      \"top\" : [ {\n        \"item\" : \"10,00\",\n        \"count\"
+        : \"274312\"\n      }, {\n        \"item\" : \"6,00\",\n        \"count\"
+        : \"150318\"\n      }, {\n        \"item\" : \"4,00\",\n        \"count\"
+        : \"149152\"\n      }, {\n        \"item\" : \"2,00\",\n        \"count\"
+        : \"149020\"\n      }, {\n        \"item\" : \"5,00\",\n        \"count\"
+        : \"148531\"\n      }, {\n        \"item\" : \"30,00\",\n        \"count\"
+        : \"133068\"\n      }, {\n        \"item\" : \"20,00\",\n        \"count\"
+        : \"123095\"\n      }, {\n        \"item\" : \"3,00\",\n        \"count\"
+        : \"117737\"\n      }, {\n        \"item\" : \"15,00\",\n        \"count\"
+        : \"100579\"\n      }, {\n        \"item\" : \"100,00\",\n        \"count\"
+        : \"100238\"\n      }, {\n        \"item\" : \"1,00\",\n        \"count\"
+        : \"97136\"\n      }, {\n        \"item\" : \"50,00\",\n        \"count\"
+        : \"90667\"\n      }, {\n        \"item\" : \"200,00\",\n        \"count\"
+        : \"82943\"\n      }, {\n        \"item\" : \"8,00\",\n        \"count\" :
+        \"73749\"\n      }, {\n        \"item\" : \"300,00\",\n        \"count\" :
+        \"69616\"\n      }, {\n        \"item\" : \"25,00\",\n        \"count\" :
+        \"62869\"\n      }, {\n        \"item\" : \"60,00\",\n        \"count\" :
+        \"62474\"\n      }, {\n        \"item\" : \"150,00\",\n        \"count\" :
+        \"55202\"\n      }, {\n        \"item\" : \"12,00\",\n        \"count\" :
+        \"50170\"\n      }, {\n        \"item\" : \"40,00\",\n        \"count\" :
+        \"45115\"\n      } ],\n      \"smallest\" : \"0,00\",\n      \"count\" : \"2795052\",\n
+        \     \"cardinality\" : \"2795052\"\n    },\n    \"format\" : {\n      \"decimalSeparator\"
+        : \".\",\n      \"groupSeparator\" : \",\"\n    }\n  }, {\n    \"id\" : 551577982,\n
+        \   \"name\" : \"VELOCIDAD_SUBIDA\",\n    \"dataTypeName\" : \"text\",\n    \"description\"
+        : \"\",\n    \"fieldName\" : \"velocidad_subida\",\n    \"position\" : 11,\n
+        \   \"renderTypeName\" : \"text\",\n    \"tableColumnId\" : 86515088,\n    \"width\"
+        : 292,\n    \"cachedContents\" : {\n      \"non_null\" : \"2795052\",\n      \"largest\"
+        : \"9999,00\",\n      \"null\" : \"0\",\n      \"top\" : [ {\n        \"item\"
+        : \"1,00\",\n        \"count\" : \"655174\"\n      }, {\n        \"item\"
+        : \"10,00\",\n        \"count\" : \"242562\"\n      }, {\n        \"item\"
+        : \"2,00\",\n        \"count\" : \"171074\"\n      }, {\n        \"item\"
+        : \"5,00\",\n        \"count\" : \"169232\"\n      }, {\n        \"item\"
+        : \"3,00\",\n        \"count\" : \"149144\"\n      }, {\n        \"item\"
+        : \"6,00\",\n        \"count\" : \"121608\"\n      }, {\n        \"item\"
+        : \"4,00\",\n        \"count\" : \"113391\"\n      }, {\n        \"item\"
+        : \"30,00\",\n        \"count\" : \"96023\"\n      }, {\n        \"item\"
+        : \"8,00\",\n        \"count\" : \"88822\"\n      }, {\n        \"item\" :
+        \"0,50\",\n        \"count\" : \"81853\"\n      }, {\n        \"item\" : \"20,00\",\n
+        \       \"count\" : \"76001\"\n      }, {\n        \"item\" : \"50,00\",\n
+        \       \"count\" : \"45619\"\n      }, {\n        \"item\" : \"15,00\",\n
+        \       \"count\" : \"45545\"\n      }, {\n        \"item\" : \"100,00\",\n
+        \       \"count\" : \"45117\"\n      }, {\n        \"item\" : \"25,00\",\n
+        \       \"count\" : \"36962\"\n      }, {\n        \"item\" : \"12,00\",\n
+        \       \"count\" : \"33859\"\n      }, {\n        \"item\" : \"200,00\",\n
+        \       \"count\" : \"27391\"\n      }, {\n        \"item\" : \"1,02\",\n
+        \       \"count\" : \"25785\"\n      }, {\n        \"item\" : \"0,80\",\n
+        \       \"count\" : \"24426\"\n      }, {\n        \"item\" : \"150,00\",\n
+        \       \"count\" : \"23042\"\n      } ],\n      \"smallest\" : \"0,00\",\n
+        \     \"count\" : \"2795052\",\n      \"cardinality\" : \"2795052\"\n    },\n
+        \   \"format\" : {\n      \"decimalSeparator\" : \".\",\n      \"groupSeparator\"
+        : \",\"\n    }\n  }, {\n    \"id\" : 551577983,\n    \"name\" : \"No DE ACCESOS\",\n
+        \   \"dataTypeName\" : \"text\",\n    \"description\" : \"\",\n    \"fieldName\"
+        : \"no_de_accesos\",\n    \"position\" : 12,\n    \"renderTypeName\" : \"text\",\n
+        \   \"tableColumnId\" : 114762616,\n    \"cachedContents\" : {\n      \"non_null\"
+        : \"2795052\",\n      \"largest\" : \"9995\",\n      \"null\" : \"0\",\n      \"top\"
+        : [ {\n        \"item\" : \"1\",\n        \"count\" : \"917406\"\n      },
+        {\n        \"item\" : \"2\",\n        \"count\" : \"333634\"\n      }, {\n
+        \       \"item\" : \"3\",\n        \"count\" : \"191415\"\n      }, {\n        \"item\"
+        : \"4\",\n        \"count\" : \"129545\"\n      }, {\n        \"item\" : \"5\",\n
+        \       \"count\" : \"96582\"\n      }, {\n        \"item\" : \"6\",\n        \"count\"
+        : \"76561\"\n      }, {\n        \"item\" : \"7\",\n        \"count\" : \"61777\"\n
+        \     }, {\n        \"item\" : \"8\",\n        \"count\" : \"52348\"\n      },
+        {\n        \"item\" : \"9\",\n        \"count\" : \"44804\"\n      }, {\n
+        \       \"item\" : \"10\",\n        \"count\" : \"39547\"\n      }, {\n        \"item\"
+        : \"11\",\n        \"count\" : \"33443\"\n      }, {\n        \"item\" : \"12\",\n
+        \       \"count\" : \"30640\"\n      }, {\n        \"item\" : \"13\",\n        \"count\"
+        : \"26962\"\n      }, {\n        \"item\" : \"14\",\n        \"count\" : \"24547\"\n
+        \     }, {\n        \"item\" : \"15\",\n        \"count\" : \"23264\"\n      },
+        {\n        \"item\" : \"16\",\n        \"count\" : \"20727\"\n      }, {\n
+        \       \"item\" : \"0\",\n        \"count\" : \"19565\"\n      }, {\n        \"item\"
+        : \"17\",\n        \"count\" : \"19209\"\n      }, {\n        \"item\" : \"18\",\n
+        \       \"count\" : \"17898\"\n      }, {\n        \"item\" : \"19\",\n        \"count\"
+        : \"16250\"\n      } ],\n      \"smallest\" : \"0\",\n      \"count\" : \"2795052\",\n
+        \     \"cardinality\" : \"2795052\"\n    },\n    \"format\" : { }\n  } ],\n
+        \ \"grants\" : [ {\n    \"inherited\" : false,\n    \"type\" : \"viewer\",\n
+        \   \"flags\" : [ \"public\" ]\n  } ],\n  \"license\" : {\n    \"name\" :
+        \"Creative Commons Attribution | Share Alike 4.0 International\",\n    \"logoUrl\"
+        : \"images/licenses/cc30bysa.png\",\n    \"termsLink\" : \"http://creativecommons.org/licenses/by-sa/4.0/legalcode\"\n
+        \ },\n  \"metadata\" : {\n    \"custom_fields\" : {\n      \"Informaci\xF3n
+        de la Entidad\" : {\n        \"Municipio\" : \"Bogot\xE1 D.C.\",\n        \"Nombre
+        de la Entidad\" : \"Ministerio de Tecnolog\xEDas de la Informaci\xF3n y las
+        Comunicaciones - MinTIC, Bogot\xE1 D.C.\",\n        \"DIVIPOLA Municipio\"
+        : \"11001\",\n        \"Orden\" : \"Nacional\",\n        \"Sector\" : \"Tecnolog\xEDas
+        de la Informaci\xF3n y Comunicaciones\",\n        \"Departamento\" : \"Bogot\xE1
+        D.C.\"\n      },\n      \"Informaci\xF3n de Datos\" : {\n        \"Cobertura
+        Geogr\xE1fica\" : \"Nacional\",\n        \"Idioma\" : \"Espa\xF1ol\",\n        \"Frecuencia
+        de Actualizaci\xF3n\" : \"Trimestral\"\n      }\n    }\n  },\n  \"owner\"
+        : {\n    \"id\" : \"qdvi-tu8n\",\n    \"displayName\" : \"OficinaTI\",\n    \"screenName\"
+        : \"OficinaTI\",\n    \"type\" : \"interactive\",\n    \"flags\" : [ \"acceptedEula\",
+        \"mayBeStoriesCoOwner\" ]\n  },\n  \"query\" : { },\n  \"rights\" : [ \"read\"
+        ],\n  \"tableAuthor\" : {\n    \"id\" : \"qdvi-tu8n\",\n    \"displayName\"
+        : \"OficinaTI\",\n    \"screenName\" : \"OficinaTI\",\n    \"type\" : \"interactive\",\n
+        \   \"flags\" : [ \"acceptedEula\", \"mayBeStoriesCoOwner\" ]\n  },\n  \"tags\"
+        : [ \"suscriptores\", \"internet\", \"departamentos\", \"municipios proveedores
+        trimestre\", \"internet fijo\" ],\n  \"flags\" : [ \"default\", \"ownerMayBeContacted\",
+        \"restorable\", \"restorePossibleForType\" ]\n}\n"
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 19 Jun 2026 02:15:38 GMT
+      Server:
+      - nginx
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Socrata-Region:
+      - aws-us-east-1-fedramp-prod
+      X-Socrata-RequestId:
+      - fd54e013491f36f90d45e2173a3dd657
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,10 @@
+{
+  "dataset_id": "n48w-gutb",
+  "dataset_name": "Internet Fijo: Accesos por tecnología y segmento",
+  "source_url": "https://www.datos.gov.co/d/n48w-gutb",
+  "domain": "www.datos.gov.co",
+  "period": "2016–2023",
+  "total_accesos": 201100412,
+  "metric": "Suma de accesos a Internet fijo reportados (acumulado del periodo).",
+  "note": "Artefacto de enseñanza: agregación simplificada de datos.gov.co."
+}
