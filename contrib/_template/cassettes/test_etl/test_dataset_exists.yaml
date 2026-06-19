@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Host:
+      - www.datos.gov.co
+      User-Agent:
+      - colombia-open-data-skill/0.1 (+recoveredfactory/dagster-colombia-skill)
+    method: GET
+    uri: https://www.datos.gov.co/resource/n48w-gutb.json?$select=count(*)%20as%20count
+  response:
+    body:
+      string: '[{"count":"2795052"}]
+
+        '
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - close
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Fri, 19 Jun 2026 02:28:31 GMT
+      ETag:
+      - W/"Z29sZi4xNTM2N184XzE5NHRISW9yOEFvWXJ3eDlNdWJVTEg2dFV1TXVEVQ-B6woCHGSBIxSMEUEpO0mokJWAVY--gzip--gzip"
+      Last-Modified:
+      - Fri, 23 Feb 2024 21:31:08 GMT
+      Server:
+      - nginx
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-SODA2-Data-Out-Of-Date:
+      - 'false'
+      X-SODA2-Fields:
+      - '["count"]'
+      X-SODA2-Secondary-Last-Modified:
+      - Fri, 23 Feb 2024 21:31:08 GMT
+      X-SODA2-Truth-Last-Modified:
+      - Fri, 23 Feb 2024 21:31:08 GMT
+      X-SODA2-Types:
+      - '["number"]'
+      X-Socrata-Region:
+      - aws-us-east-1-fedramp-prod
+      X-Socrata-RequestId:
+      - 90e6c309866e1f6d1058debf3fdbe093
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,28 @@
+[project]
+name = "colombia-pipeline"
+version = "0.1.0"
+description = "Dagster pipeline: datos.gov.co -> raw -> clean -> dashboard JSON"
+requires-python = ">=3.10"
+dependencies = [
+    "dagster>=1.13,<1.14",
+    "dagster-webserver>=1.13,<1.14",
+    "pandas>=2.2,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8,<9",
+    "pytest-recording>=0.13",
+    "vcrpy>=6",
+]
+
+[tool.dagster]
+module_name = "colombia_pipeline.definitions"
+code_location_name = "colombia_pipeline"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["colombia_pipeline*"]
