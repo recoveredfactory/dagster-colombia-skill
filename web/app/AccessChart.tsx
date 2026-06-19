@@ -24,7 +24,7 @@ export default function AccessChart({ data }: { data: Point[] }) {
           tickFormatter={(v) => `${(Number(v) / 1_000_000).toFixed(0)}M`}
         />
         <Tooltip
-          formatter={(v) => [Number(v).toLocaleString("es-CO"), "Accesos"]}
+          formatter={(v) => [Number(v).toLocaleString("es-CO"), "Suscriptores"]}
         />
         <Line
           type="monotone"
