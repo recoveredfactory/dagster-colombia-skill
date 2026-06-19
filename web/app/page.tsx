@@ -15,17 +15,17 @@ export default function Home() {
         <p className="sub">{meta.dataset_name}</p>
         <p className="meta">
           Periodo {meta.period} · {byDepartment.length} departamentos ·{" "}
-          {nf.format(meta.total_accesos)} accesos (acumulado)
+          {nf.format(meta.total_accesos)} suscriptores (al {meta.latest_period})
         </p>
       </header>
 
       <section>
-        <h2>Accesos por año</h2>
+        <h2>Suscriptores por año (cierre de cada año)</h2>
         <AccessChart data={byYear} />
       </section>
 
       <section>
-        <h2>Accesos por departamento</h2>
+        <h2>Suscriptores por departamento (al {meta.latest_period})</h2>
         {/* 🗺️ Reto (issue "mapa"): by_department.json incluye cod_departamento
             (DIVIPOLA). Únelo con un GeoJSON de departamentos de Colombia para
             pintar aquí un mapa coroplético en lugar de (o además de) la tabla. */}
@@ -35,7 +35,7 @@ export default function Home() {
               <th>#</th>
               <th>Departamento</th>
               <th>Código</th>
-              <th className="num">Accesos</th>
+              <th className="num">Suscriptores</th>
             </tr>
           </thead>
           <tbody>

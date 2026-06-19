@@ -2,166 +2,166 @@
   {
     "cod_departamento": "11",
     "departamento": "Bogotá D.C.",
-    "accesos": 53957365
+    "accesos": 2251960
   },
   {
     "cod_departamento": "05",
     "departamento": "Antioquia",
-    "accesos": 35342014
+    "accesos": 1615103
   },
   {
     "cod_departamento": "76",
     "departamento": "Valle Del Cauca",
-    "accesos": 21783112
+    "accesos": 916250
   },
   {
     "cod_departamento": "25",
     "departamento": "Cundinamarca",
-    "accesos": 12850353
+    "accesos": 649508
   },
   {
     "cod_departamento": "08",
     "departamento": "Atlántico",
-    "accesos": 10366668
+    "accesos": 470721
   },
   {
     "cod_departamento": "68",
     "departamento": "Santander",
-    "accesos": 9668325
+    "accesos": 436155
   },
   {
     "cod_departamento": "13",
     "departamento": "Bolívar",
-    "accesos": 5551870
-  },
-  {
-    "cod_departamento": "66",
-    "departamento": "Risaralda",
-    "accesos": 5059700
+    "accesos": 251635
   },
   {
     "cod_departamento": "73",
     "departamento": "Tolima",
-    "accesos": 4697547
+    "accesos": 230138
+  },
+  {
+    "cod_departamento": "66",
+    "departamento": "Risaralda",
+    "accesos": 218761
   },
   {
     "cod_departamento": "54",
     "departamento": "Norte De Santander",
-    "accesos": 4364663
-  },
-  {
-    "cod_departamento": "17",
-    "departamento": "Caldas",
-    "accesos": 3772203
+    "accesos": 188319
   },
   {
     "cod_departamento": "50",
     "departamento": "Meta",
-    "accesos": 3629674
+    "accesos": 179395
+  },
+  {
+    "cod_departamento": "17",
+    "departamento": "Caldas",
+    "accesos": 173023
   },
   {
     "cod_departamento": "15",
     "departamento": "Boyacá",
-    "accesos": 3537632
+    "accesos": 162016
   },
   {
     "cod_departamento": "41",
     "departamento": "Huila",
-    "accesos": 3205852
+    "accesos": 151592
   },
   {
     "cod_departamento": "47",
     "departamento": "Magdalena",
-    "accesos": 3061158
-  },
-  {
-    "cod_departamento": "63",
-    "departamento": "Quindío",
-    "accesos": 2917170
-  },
-  {
-    "cod_departamento": "52",
-    "departamento": "Nariño",
-    "accesos": 2880370
+    "accesos": 146972
   },
   {
     "cod_departamento": "20",
     "departamento": "Cesar",
-    "accesos": 2860769
+    "accesos": 136787
+  },
+  {
+    "cod_departamento": "52",
+    "departamento": "Nariño",
+    "accesos": 129967
+  },
+  {
+    "cod_departamento": "63",
+    "departamento": "Quindío",
+    "accesos": 127455
   },
   {
     "cod_departamento": "23",
     "departamento": "Córdoba",
-    "accesos": 2857643
+    "accesos": 111986
   },
   {
     "cod_departamento": "19",
     "departamento": "Cauca",
-    "accesos": 2244148
+    "accesos": 106627
   },
   {
     "cod_departamento": "70",
     "departamento": "Sucre",
-    "accesos": 1557342
-  },
-  {
-    "cod_departamento": "44",
-    "departamento": "La Guajira",
-    "accesos": 1238957
+    "accesos": 65403
   },
   {
     "cod_departamento": "85",
     "departamento": "Casanare",
-    "accesos": 1156829
+    "accesos": 55467
+  },
+  {
+    "cod_departamento": "44",
+    "departamento": "La Guajira",
+    "accesos": 53712
   },
   {
     "cod_departamento": "18",
     "departamento": "Caqueta",
-    "accesos": 747356
-  },
-  {
-    "cod_departamento": "27",
-    "departamento": "Chocó",
-    "accesos": 630158
+    "accesos": 34767
   },
   {
     "cod_departamento": "81",
     "departamento": "Arauca",
-    "accesos": 495058
+    "accesos": 26693
+  },
+  {
+    "cod_departamento": "27",
+    "departamento": "Chocó",
+    "accesos": 20683
   },
   {
     "cod_departamento": "86",
     "departamento": "Putumayo",
-    "accesos": 387977
+    "accesos": 20002
   },
   {
     "cod_departamento": "88",
     "departamento": "Archipiélago De San Andrés, Providencia Y Santa Catalina",
-    "accesos": 132204
+    "accesos": 11440
   },
   {
     "cod_departamento": "95",
     "departamento": "Guaviare",
-    "accesos": 56970
-  },
-  {
-    "cod_departamento": "99",
-    "departamento": "Vichada",
-    "accesos": 32384
+    "accesos": 1382
   },
   {
     "cod_departamento": "91",
     "departamento": "Amazonas",
-    "accesos": 29361
+    "accesos": 941
+  },
+  {
+    "cod_departamento": "99",
+    "departamento": "Vichada",
+    "accesos": 813
   },
   {
     "cod_departamento": "94",
     "departamento": "Guainía",
-    "accesos": 25695
+    "accesos": 565
   },
   {
     "cod_departamento": "97",
     "departamento": "Vaupés",
-    "accesos": 1885
+    "accesos": 84
   }
 ]

@@ -4,7 +4,8 @@
   "source_url": "https://www.datos.gov.co/d/n48w-gutb",
   "domain": "www.datos.gov.co",
   "period": "2016–2023",
-  "total_accesos": 201100412,
-  "metric": "Suma de accesos a Internet fijo reportados (acumulado del periodo).",
-  "note": "Artefacto de enseñanza: agregación simplificada de datos.gov.co."
+  "latest_period": "2023-T3",
+  "total_accesos": 8946322,
+  "metric": "Suscriptores de Internet fijo (stock) al último trimestre reportado.",
+  "note": "Foto de stock, no acumulado. La tendencia anual usa el último trimestre de cada año; el año más reciente puede ser parcial."
 }
