@@ -62,7 +62,9 @@ def cmd_schema(args):
 
 
 def cmd_query(args):
-    if not args.no_sniff:
+    # Sniff only when pulling raw rows. If the query already aggregates server-side
+    # (--group), the "this dataset is huge" hint is just noise.
+    if not args.no_sniff and not args.group:
         est = socrata.sniff(args.dataset_id, domain=args.domain, where=args.where)
         if est["message"]:
             _err(est["message"])

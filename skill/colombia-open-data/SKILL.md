@@ -30,12 +30,15 @@ python3 scripts/cli.py dane-check "<the user's request>"
 
 If it reports `dane: true`, tell the user plainly that DANE microdata is out of
 scope for this skill, suggest using regular Claude or another tool for now, and
-point them to the open GitHub issue **"Agregar soporte para DANE"**. The bail logic
-lives in `scripts/dane.py` (`is_probably_dane`).
+point them to the open GitHub issue **"Agregar soporte para DANE"**. The verdict
+JSON is on stdout and the human-readable bail message is on **stderr** — relay that
+message. The bail logic lives in `scripts/dane.py` (`is_probably_dane`).
 
 ## Workflow
 
-All commands run from `scripts/`. JSON prints to stdout; hints/warnings to stderr.
+Run from the **skill root** (`skill/colombia-open-data/`); commands use the path
+`scripts/cli.py`. JSON goes to **stdout**; size hints, warnings, and the DANE bail
+message go to **stderr** (so you can pipe stdout safely).
 
 1. **Discover** datasets by keyword:
    ```bash
@@ -54,6 +57,7 @@ All commands run from `scripts/`. JSON prints to stdout; hints/warnings to stder
    python3 scripts/cli.py query n48w-gutb \
      --select "anno,sum(no_de_accesos::number) as accesos" --group anno --order anno
    ```
+   For a **top-N ranking**, add `--order "<col> desc" --limit N`.
 
 ## Guaranteed-working demo (verified live)
 
@@ -70,6 +74,8 @@ Dataset **`n48w-gutb`** — *Internet Fijo: Accesos por tecnología y segmento*
     --select "cod_departamento,departamento,sum(no_de_accesos::number) as accesos" \
     --group "cod_departamento,departamento" --order "accesos desc"
   ```
+  Note: this `sum(...)` is cumulative across all years/quarters in the dataset. For a
+  single year, add `--where "anno='2023'"`.
 
 ## Notes
 
