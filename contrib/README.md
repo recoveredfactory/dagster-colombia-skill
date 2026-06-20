@@ -15,22 +15,30 @@ Aquí cada estudiante agrega su **propio** pipeline para un dataset de
 2. **Copia la plantilla** a una carpeta con tu nombre:
    ```bash
    cp -r contrib/_template contrib/tu-nombre
+   rm -rf contrib/tu-nombre/cassettes   # el cassette copiado es del dataset de la plantilla
    ```
 
 3. **Edita `contrib/tu-nombre/etl.py`**: cambia `DATASET_ID`, la consulta SoQL y la
    función `clean()`. El cliente HTTP (`socrata.py`) se reutiliza — no lo copies.
 
-4. **Pruébalo** (graba el cassette la primera vez, luego se reproduce sin red):
+4. **Pruébalo.** Necesitas las dependencias del pipeline (Dagster, pandas); si aún no las
+   instalaste, hazlo primero (ver el README, *Camino 2* paso 2). Luego, desde la raíz del repo:
    ```bash
-   uv run --project pipeline pytest contrib/tu-nombre
+   source pipeline/.venv/bin/activate     # Windows: pipeline\.venv\Scripts\activate
+   pytest contrib/tu-nombre               # 1.ª vez: graba el cassette por red; luego va sin red
+   ```
+   > Con **uv** en vez de venv: `uv run --project pipeline pytest contrib/tu-nombre`.
+
+5. **Míralo correr** (opcional, con el entorno activado):
+   ```bash
+   # headless — escribe el JSON, sin levantar servidor:
+   dagster asset materialize --select '*' -f contrib/tu-nombre/etl.py
+   # o la interfaz visual de Dagster (servidor en http://localhost:3000):
+   dagster dev -f contrib/tu-nombre/etl.py
    ```
 
-5. **Míralo en Dagster** (opcional):
-   ```bash
-   uv run --project pipeline dagster dev -f contrib/tu-nombre/etl.py
-   ```
-
-6. **Abre un PR** con la lista de verificación de la plantilla de PR.
+6. **Abre un PR** (crea primero tu rama — ver [`../CONTRIBUTING.md`](../CONTRIBUTING.md)) y
+   llena la lista de verificación de la plantilla de PR.
 
 ## Reglas
 

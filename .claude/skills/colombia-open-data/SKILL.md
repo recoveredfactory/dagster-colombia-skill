@@ -37,9 +37,11 @@ message. The bail logic lives in `scripts/dane.py` (`is_probably_dane`).
 
 ## Workflow
 
-Run from the **skill root** (`.claude/skills/colombia-open-data/`); commands use the path
-`scripts/cli.py`. JSON goes to **stdout**; size hints, warnings, and the DANE bail
-message go to **stderr** (so you can pipe stdout safely).
+Steps 1–3 (the skill CLI) are written to run from the **skill root**
+(`.claude/skills/colombia-open-data/`), using `scripts/cli.py`; from the repo root, use the
+full path. Step 4 (the pipeline — `cp`, `pytest`, `dagster`, `git`) runs from the **repo
+root**. JSON goes to **stdout**; size hints, warnings, and the DANE bail message go to
+**stderr** (so you can pipe stdout safely).
 
 1. **Discover** datasets by keyword:
    ```bash
@@ -62,11 +64,26 @@ message go to **stderr** (so you can pipe stdout safely).
 
 4. **Make it their own pipeline** (the real goal — not just a one-off query): once the
    user likes a dataset, offer to scaffold a small **`raw → clean → dashboard`** Dagster
-   pipeline for it. The scaffold already exists — copy `contrib/_template/` to
-   `contrib/<name>/`, set `DATASET_ID` + the `raw` asset's SoQL query, and adapt `clean()`
-   to their columns (Socrata sends everything as text — cast the numbers). It reuses this
-   skill's `socrata.py` and writes a `dashboard.json` they can chart. Run it with
-   `dagster dev -f contrib/<name>/etl.py`. Details: `contrib/README.md`.
+   pipeline for it. The scaffold already exists. **From the repo root:**
+   - **Copy the template:** `cp -r contrib/_template contrib/<nombre>`, then
+     `rm -rf contrib/<nombre>/cassettes` (the copied cassette is for the template's
+     dataset — clearing it lets the test re-record against the new one on first run).
+   - **Adapt it:** in `contrib/<nombre>/etl.py`, set `DATASET_ID` + the `raw` asset's SoQL
+     query, and adapt `clean()` to their columns (Socrata sends everything as text — cast
+     the numbers). It reuses this skill's `socrata.py` and writes a `dashboard.json`.
+   - **Run it** — this needs the pipeline deps (Dagster/pandas), which the stdlib skill does
+     *not* install; set them up once (README "Camino 1" paso 3 / "Camino 2" paso 2), then
+     `source pipeline/.venv/bin/activate`. Quick headless check (no server, writes the JSON):
+     `dagster asset materialize --select '*' -f contrib/<nombre>/etl.py`. For the visual UI
+     instead: `dagster dev -f contrib/<nombre>/etl.py` (a server on :3000). Test:
+     `pytest contrib/<nombre>`.
+   - **Close the loop the way the class does (issue → rama → PR).** Merging student
+     pipelines into the repo is out of scope, but offer to give them the real flow: put it
+     on a branch (`git checkout -b contrib/<nombre>` and commit), and tell them they can open
+     a Pull Request when ready (`CONTRIBUTING.md`; the `good first issue` "agrega tu pipeline").
+     **Branch and commit for them; don't push or open the PR — that's their step.**
+
+   Details: `contrib/README.md`.
 
 ## Guaranteed-working demo (verified live)
 
