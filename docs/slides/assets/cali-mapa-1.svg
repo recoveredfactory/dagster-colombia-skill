@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 920" width="460" height="920" role="img" aria-label="Placeholder: Cali Mapas — mobile view">
+  <rect x="18" y="18" width="424" height="884" rx="14"
+        fill="none" stroke="#9a9182" stroke-width="3" stroke-dasharray="14 12"/>
+  
+    <g stroke="#9a9182" stroke-width="6.9" fill="none" stroke-linejoin="round" opacity="0.9">
+      <circle cx="149.5" cy="376.3" r="18.4" fill="#c8553f" stroke="none" opacity="0.85"/>
+      <polyline points="103.5,471.8 178.2,397.0 235.8,440.7 293.2,379.8 362.2,471.8"/>
+    </g>
+  <text x="230" y="478" text-anchor="middle"
+        font-family="monospace" font-size="16" letter-spacing="3"
+        fill="#c8553f" font-weight="bold">IMAGE PLACEHOLDER</text>
+  <text text-anchor="middle" font-family="Georgia, serif" font-size="26"
+        fill="#8f877a" font-weight="bold"><tspan x="230" y="506.5">Cali Mapas — mobile</tspan><tspan x="230" y="539.0">view</tspan></text>
+  <text x="230" y="848" text-anchor="middle"
+        font-family="monospace" font-size="14" fill="#a89e8d">assets/cali-mapa-1.svg</text>
+  
+</svg>

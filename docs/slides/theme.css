@@ -1,0 +1,577 @@
+/* ============================================================================
+   Bitmap deck theme for reveal.js  —  "Using Python to explore our world"
+   Image-first slides: Migra serif headlines + a system sans-serif for body & labels. Overrides the reveal.js base.
+   Edit the variables below to re-skin the whole deck.
+   ----------------------------------------------------------------------------
+   FONTS: David's pairing — Migra (serif display) for headlines + a plain system
+   sans-serif for body and the small labels (eyebrows, captions, credits, tags).
+   Code uses --mono only. Migra is Pangram Pangram "Free for Personal Use",
+   self-hosted from
+   assets/fonts/ (license files live there too). Google bitmap fonts (Pixelify Sans
+   + DotGothic16, loaded in index.html) remain the fallback chain.
+
+   The free packs are weight-limited, so know what you've got:
+     • Migra   → Extralight (200) + Extrabold (800) ONLY, each with an italic.
+                 No regular/medium/semibold exists in the free pack.
+     • NeueBit → Bold ONLY (mapped across 100–900 below so body text still uses it).
+     • MondWest→ Regular ONLY (bonus; kept as a display alternative/fallback).
+     • Departure Mono → still optional & absent; drop DepartureMono.woff2 here to
+                 enable it for code. Falls back to ui-monospace until then.
+
+   Headline weight is a one-line knob: --display-weight (see :root). 800 = Extrabold
+   (default), 200 = Extralight. For italic headlines add `font-style: italic` to the
+   heading rule you want.
+   ========================================================================== */
+
+@font-face { font-family: "Migra"; src: url("assets/fonts/Migra-Extralight.woff2") format("woff2");            font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: "Migra"; src: url("assets/fonts/Migra-Extrabold.woff2") format("woff2");             font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Migra"; src: url("assets/fonts/MigraItalic-ExtralightItalic.woff2") format("woff2"); font-weight: 200; font-style: italic; font-display: swap; }
+@font-face { font-family: "Migra"; src: url("assets/fonts/MigraItalic-ExtraboldItalic.woff2") format("woff2");  font-weight: 800; font-style: italic; font-display: swap; }
+
+/* NeueBit ships Bold only — declare it across the whole weight range so 400-weight
+   body text renders in NeueBit instead of dropping to the DotGothic16 fallback. */
+@font-face { font-family: "NeueBit";        src: url("assets/fonts/PPNeueBit-Bold.otf")    format("opentype"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "MondWest";       src: url("assets/fonts/PPMondwest-Regular.otf") format("opentype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Departure Mono"; src: url("assets/fonts/DepartureMono.woff2")   format("woff2");    font-display: swap; }
+
+:root {
+  /* ---- PALETTE: default = "cream". Other palettes override these below;
+     switch live with the corner selector (persisted in localStorage). ---- */
+  --paper:       #fbf8f2;   /* slide background                  */
+  --paper-2:     #f1eadf;   /* image frames / soft panels        */
+  --ink:         #1b1714;   /* primary text                      */
+  --ink-soft:    #4a423a;   /* secondary text                    */
+  --muted:       #8a7f70;   /* captions, meta                    */
+  --line:        #e3dcce;   /* hairlines, borders                */
+  --hot:         #e8442f;   /* main accent (emphasis) — vermillion */
+  --cool:        #1f5fbf;   /* link accent                       */
+  --gold:        #e0a325;   /* kicker accent on dark slides      */
+  --dark:        #1b1714;   /* dark-section background           */
+  --on-dark:     #fbf8f2;   /* text over dark sections           */
+  --on-dark-soft:#c9bfae;   /* secondary text over dark sections */
+  --code-bg:     #1f1b18;   /* code card background              */
+  --code-fg:     #ece3d6;   /* code base text                    */
+
+  /* Type. Migra (serif display) for headlines, a plain system sans-serif for body &
+     all labels. Migra is self-hosted from assets/fonts/; code uses --mono. (MondWest
+     stays declared as a @font-face but is no longer wired in — it didn't read well.) */
+  --display:        "Migra", Georgia, "Times New Roman", serif;   /* titles, big words */
+  --display-weight: 200;   /* Migra headline weight: 200 = Extralight (default), 800 = Extrabold */
+  --sans:           system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;   /* body + ALL non-code labels (eyebrows, captions, credits) */
+  --mono:           "Departure Mono", ui-monospace, "JetBrains Mono", monospace; /* code ONLY (needs true monospace) */
+}
+
+/* ============================================================================
+   PALETTES — flip live with the corner selector. Each only overrides colors.
+   ========================================================================== */
+
+/* Terminal / phosphor green — whole deck goes dark, CRT vibe */
+:root[data-theme="terminal"] {
+  --paper: #0e120e;  --paper-2: #18201a;
+  --ink: #d7e8d2;    --ink-soft: #9bb39a;  --muted: #6f8a70;
+  --line: #24331f;
+  --hot: #46d160;    --cool: #69c8d8;      --gold: #46d160;
+  --dark: #0a0d0a;   --on-dark: #d7e8d2;   --on-dark-soft: #7f9a7e;
+  --code-bg: #0a0d0a; --code-fg: #cfe8c8;
+}
+
+/* Terminal / amber — same but amber phosphor */
+:root[data-theme="amber"] {
+  --paper: #120f08; --paper-2: #1f190f;
+  --ink: #ffd9a0;   --ink-soft: #c9a368;  --muted: #8f7444;
+  --line: #2e2412;
+  --hot: #ffb000;   --cool: #ff7a3c;      --gold: #ffb000;
+  --dark: #0d0a05;  --on-dark: #ffd9a0;   --on-dark-soft: #b48f54;
+  --code-bg: #0d0a05; --code-fg: #ffd9a0;
+}
+
+/* Stark modernist — white, black, one bold red. Bauhaus/poster */
+:root[data-theme="stark"] {
+  --paper: #ffffff; --paper-2: #f0f0f0;
+  --ink: #111111;   --ink-soft: #333333;  --muted: #777777;
+  --line: #dddddd;
+  --hot: #e2231a;   --cool: #1a3fe2;      --gold: #111111;
+  --dark: #111111;  --on-dark: #ffffff;   --on-dark-soft: #bdbdbd;
+  --code-bg: #111111; --code-fg: #f2f2f2;
+}
+
+/* ---- Map reveal.js theme variables -------------------------------------- */
+.reveal {
+  --r-background-color: var(--paper);
+  --r-main-font: var(--sans);
+  --r-main-color: var(--ink);
+  --r-heading-font: var(--display);
+  --r-heading-color: var(--ink);
+  --r-heading-font-weight: var(--display-weight);
+  --r-heading-text-transform: none;
+  --r-heading-text-shadow: none;
+  --r-heading-line-height: 1.1;
+  --r-heading-letter-spacing: 0;
+  --r-link-color: var(--cool);
+  --r-link-color-hover: var(--hot);
+  --r-link-color-dark: #143f80;
+  --r-selection-background-color: var(--gold);
+  --r-selection-color: var(--ink);
+
+  font-family: var(--sans);
+  font-size: 34px;   /* body base — bump for bigger body text. Headings scale off this in em. */
+  font-weight: 400;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* The deck background must follow the palette. reveal paints .reveal-viewport
+   (an ANCESTOR of .reveal), so set it on the root chain — it inherits --paper. */
+html, body, .reveal-viewport { background: var(--paper); }
+
+.reveal .slides { text-align: left; }
+.reveal .slides > section,
+.reveal .slides > section > section {
+  box-sizing: border-box;   /* so padding insets content instead of widening the slide */
+  padding: 0 5%;
+  line-height: 1.4;
+}
+
+/* ---- Headings ----------------------------------------------------------- */
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: var(--display);
+  color: var(--ink);
+  font-weight: var(--display-weight);
+  line-height: 1.1;
+  letter-spacing: 0;
+  margin: 0 0 0.4em;
+  text-transform: none;
+  text-shadow: none;
+}
+.reveal h1 { font-size: 2.5em; font-weight: var(--display-weight); }
+.reveal h2 { font-size: 1.85em; }
+.reveal h3 { font-size: 1.35em; }
+.reveal p  { margin: 0 0 0.7em; }
+
+/* ---- Eyebrow (small kicker label above a heading) ---------------------- */
+.reveal .eyebrow {
+  font-family: var(--sans);
+  font-size: 0.6em;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--hot);
+  margin: 0 0 0.9em;
+}
+.reveal .divider .eyebrow,
+.reveal .bleed .eyebrow { color: var(--gold); }
+
+/* ---- Byline (title + closing) ------------------------------------------ */
+.reveal .byline {
+  font-family: var(--sans);
+  font-size: 0.62em;
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  margin-top: 1.5em;
+  text-transform: none;
+}
+.reveal section.divider .byline { color: var(--on-dark-soft); }
+
+/* Centered kicker (under centered images / phone pairs) */
+.reveal .center { text-align: center; }
+.reveal .eyebrow.center { margin: 1.1em 0 0; }
+
+/* Book cover image: portrait, slimmer frame */
+.reveal img.frame.book { max-height: 66vh; border-radius: 4px; }
+/* Tall figure image — fills more of the slide (e.g. a near-square screenshot). */
+.reveal figure img.tall { max-height: 80vh; }
+
+/* ---- Lead / supporting paragraph --------------------------------------- */
+.reveal .lead {
+  font-size: 1.15em;
+  color: var(--ink-soft);
+  max-width: 22em;
+  line-height: 1.45;
+}
+.reveal .muted { color: var(--muted); }
+.reveal strong { color: var(--ink); font-weight: 700; }
+.reveal em { font-style: italic; }
+
+/* ---- Links -------------------------------------------------------------- */
+.reveal a { color: var(--cool); text-decoration: none; border-bottom: 1px solid var(--line); transition: color .15s, border-color .15s; }
+.reveal a:hover { color: var(--hot); border-color: var(--hot); }
+
+/* ---- Lists -------------------------------------------------------------- */
+.reveal ul, .reveal ol { display: block; margin: 0.3em 0 0; max-width: 26em; }
+.reveal ul { list-style: none; padding: 0; }
+.reveal ul li {
+  position: relative;
+  padding-left: 1.1em;
+  margin: 0.5em 0;
+  line-height: 1.35;
+}
+.reveal ul li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.62em;
+  width: 0.45em; height: 0.45em;
+  background: var(--hot);
+  border-radius: 1px;
+}
+.reveal ol { padding-left: 1.4em; }
+.reveal ol li { margin: 0.5em 0; line-height: 1.35; }
+.reveal ol li::marker { font-family: var(--sans); color: var(--hot); font-weight: 600; }
+
+/* Tight description-style list: term — definition */
+.reveal .stack li { margin: 0.65em 0; }
+.reveal .stack li b, .reveal .stack li strong { color: var(--ink); }
+.reveal .stack li .note { color: var(--muted); }
+
+/* ============================================================================
+   SECTION DIVIDERS  (set data-background-color="#1b1714" on the slide)
+   ========================================================================== */
+.reveal section.divider { text-align: left; }
+.reveal section.divider h1,
+.reveal section.divider h2,
+.reveal section.divider p,
+.reveal section.divider .lead { color: var(--on-dark); }
+.reveal section.divider h1 {
+  font-size: 3.4em;
+  font-weight: var(--display-weight);
+  letter-spacing: 0;
+  line-height: 1.02;
+}
+.reveal section.divider .lead { color: var(--on-dark-soft); }
+/* Title-slide parenthetical aside ("(and more)") — smaller italic gold wink */
+.reveal section.title-slide .title-aside {
+  font-size: 0.4em;
+  font-style: italic;
+  color: var(--gold);
+}
+.reveal section.divider .rule {
+  width: 3.5em; height: 4px; background: var(--hot);
+  border: 0; margin: 0 0 1.2em;
+}
+
+/* The-method overview: a big numbered list of pipeline steps (Migra, on dark). */
+.reveal .steps-list {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  margin: 0.2em 0 0;
+  max-width: none;
+}
+.reveal .steps-list li {
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  font-size: 1.6em;
+  line-height: 1.22;
+  color: var(--on-dark);
+  margin: 0.12em 0;
+  padding-left: 1.7em;
+  position: relative;
+}
+.reveal .steps-list li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: 0; top: 0;
+  color: var(--hot);
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+}
+
+/* ============================================================================
+   PULL-QUOTE slides  (class="quote")
+   ========================================================================== */
+.reveal section.quote { text-align: left; }
+.reveal section.quote blockquote,
+.reveal section.quote .q {
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  font-style: normal;
+  font-size: 2.2em;
+  line-height: 1.15;
+  letter-spacing: 0;
+  color: var(--ink);
+  border: 0;
+  box-shadow: none;
+  background: none;
+  max-width: 16em;
+  margin: 0;
+  padding: 0;
+}
+.reveal section.quote .q .hl { color: var(--hot); }
+.reveal section.quote cite,
+.reveal section.quote .attr {
+  display: block;
+  margin-top: 0.9em;
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 0.42em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ============================================================================
+   FIGURES & IMAGES
+   ========================================================================== */
+.reveal figure { margin: 0; }
+.reveal figure img,
+.reveal img.frame {
+  display: block;
+  max-height: 62vh;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px -20px rgba(27,23,20,0.45);
+  background: var(--paper-2);
+}
+.reveal figcaption {
+  margin-top: 0.7em;
+  font-family: var(--sans);
+  font-size: 0.5em;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Pipeline-step slides (class="step"): a slightly larger screenshot + a prominent
+   Migra label like "1. Acquire" replacing the tiny mono figcaption. The image cap is
+   in vh so it adapts to whatever projector aspect ratio shows up. */
+.reveal section.step figure img { max-height: 68vh; }
+.reveal figcaption.step {
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  font-size: 1.5em;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  margin-top: 0.45em;
+}
+.reveal figcaption.step .n { color: var(--hot); }
+/* A step slide can carry a real code card instead of a screenshot — bare top-level
+   <pre> (blank-line-safe), centered, bigger than the default code size, and allowed
+   to grow taller since code is the focus of the slide. */
+.reveal section.step pre { margin: 0.4em auto 0; font-size: 0.56em; }
+.reveal section.step pre code { max-height: 82vh; }
+
+/* Side-by-side phone screenshots */
+.reveal .phones {
+  display: flex;
+  gap: 2.2em;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.reveal .phones figure { text-align: center; }
+.reveal img.phone {
+  display: block;
+  max-height: 64vh;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 22px;
+  border: 8px solid var(--ink);
+  box-shadow: 0 22px 45px -22px rgba(27,23,20,0.55);
+  background: var(--paper-2);
+}
+/* Two phones inside a column need to be smaller so the pair fits */
+.reveal .cols .phones { gap: 1em; }
+.reveal .cols img.phone { max-height: 52vh; }
+
+/* Grouped phones: a sub-group (e.g. two pages of the SAME project) reads as one
+   unit via proximity — tight internal gap, while .grouped widens the gap to the
+   other phones so the pair clearly separates from its neighbor. The group also
+   wraps as a whole, so the pair never splits across rows. */
+.reveal .phones.grouped { gap: 3.4em; }
+.reveal .phones .phone-group {
+  display: flex;
+  gap: 0.7em;
+  align-items: flex-end;
+}
+
+/* A row of two landscape shots */
+.reveal .shots { display: flex; gap: 1.6em; align-items: center; justify-content: center; }
+.reveal .shots figure { flex: 1 1 0; min-width: 0; }
+.reveal .shots img { max-height: 50vh; width: 100%; object-fit: contain; }
+
+/* Two-column content: text + media */
+.reveal .cols {
+  display: grid;
+  /* minmax(0,…) stops images from blowing the tracks out past the slide */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2.4em;
+  align-items: center;
+  max-width: 100%;
+}
+.reveal .cols.narrow-left { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); }
+.reveal .cols > * { min-width: 0; }           /* let grid tracks shrink */
+.reveal .cols .media img { max-height: 60vh; max-width: 100%; }
+
+/* ---- Full-bleed photo slides: lower-third caption overlay -------------- */
+/* Full slide height so bottom/top-anchored overlays (.lower-third, .photo-credit,
+   .overlay-q) stick to the slide edges — reveal runs center:true, which otherwise
+   shrinks the section to content height and floats the overlays mid-slide. */
+.reveal section.bleed { text-align: left; height: 100%; }
+.reveal section.bleed .lower-third {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 2.6em 6% 1.6em;
+  background: linear-gradient(to top, rgba(15,12,10,0.86) 0%, rgba(15,12,10,0.55) 45%, rgba(15,12,10,0) 100%);
+}
+.reveal section.bleed .lower-third .eyebrow { color: var(--gold); margin-bottom: 0.5em; }
+.reveal section.bleed .lower-third h2,
+.reveal section.bleed .lower-third p { color: #fdfbf6; margin: 0; }
+.reveal section.bleed .lower-third h2 { font-size: 1.7em; max-width: 16em; }
+/* Sober statement over a map bleed — light Migra (Extralight) on a simple solid
+   black block. No scrim, no gradient, no color accent; the block carries legibility
+   over a busy map. Scaled for a sentence or two (e.g. "Govt said X / we counted Y"). */
+.reveal section.bleed .map-claim {
+  position: absolute;
+  left: 6%; top: 8%;
+  margin: 0;
+  max-width: 15em;
+  font-family: var(--display);
+  font-weight: 200;            /* Extralight — Migra's light variant (the deck default) */
+  font-size: 1.8em;
+  line-height: 1.3;
+  color: var(--on-dark);
+  background: var(--dark);     /* simple solid black block */
+  padding: 0.45em 0.65em;
+  border-radius: 4px;
+}
+/* Large question overlay on a photo bleed (Migra) — NO scrim; a text-shadow keeps
+   it legible. Anchored top-left (bleed sections are full-height, above). */
+.reveal section.bleed .overlay-q {
+  position: absolute;
+  left: 6%; top: 7%;
+  margin: 0;
+  max-width: 10em;
+  font-weight: 800;   /* Extrabold — only here; the rest of the deck stays Extralight */
+  font-size: 2.7em;
+  line-height: 1.04;
+  color: #fdfbf6;
+  text-shadow: 0 2px 18px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.7);
+}
+.reveal section.bleed .lower-third .sub { color: #e7ddcf; font-size: 0.92em; margin-top: 0.4em; max-width: 30em; }
+
+/* Photo credit — small attribution pinned to the bottom-right of a full-bleed
+   photo slide. Reusable: add <p class="photo-credit">…</p> inside a .bleed section.
+   The dark pill keeps it legible over any photo. */
+.reveal section.bleed .photo-credit {
+  position: absolute;
+  left: 0.9em; bottom: 0.7em;
+  z-index: 3;
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.4em;
+  letter-spacing: 0.06em;
+  color: #fdfbf6;
+  background: rgba(15,12,10,0.55);
+  padding: 0.35em 0.7em;
+  border-radius: 4px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+.reveal section.bleed .photo-credit a { color: inherit; border-bottom: 0; }
+
+/* ============================================================================
+   CODE BLOCKS  (dark card with a warm syntax palette)
+   ========================================================================== */
+.reveal pre {
+  width: fit-content;        /* hug the code, don't stretch to the slide edge */
+  max-width: 1100px;         /* hard cap (px, so it can't blow past the slide) */
+  box-sizing: border-box;
+  margin: 0.4em 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px -22px rgba(27,23,20,0.5);
+  font-size: 0.52em;
+  line-height: 1.5;
+}
+.reveal pre code {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  font-family: var(--mono);
+  background: var(--code-bg);
+  color: var(--code-fg);
+  padding: 1.2em 1.4em;
+  border-radius: 10px;
+  border-left: 4px solid var(--hot);
+  max-height: 62vh;
+  overflow: auto;
+  -webkit-font-smoothing: auto;
+}
+.reveal code:not(pre code) {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  background: var(--paper-2);
+  color: var(--ink-soft);
+  padding: 0.08em 0.35em;
+  border-radius: 4px;
+}
+
+/* highlight.js — warm-on-dark token colors */
+.hljs-comment, .hljs-quote { color: #8c8173; font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-literal { color: #e98a73; }
+.hljs-string, .hljs-attr, .hljs-attribute, .hljs-meta-string { color: #c7c06a; }
+.hljs-built_in, .hljs-class .hljs-title, .hljs-type { color: #6db1c9; }
+.hljs-title, .hljs-title.function_, .hljs-section, .hljs-name { color: #f0c46a; }
+.hljs-number, .hljs-symbol, .hljs-bullet { color: #d59ad1; }
+.hljs-meta, .hljs-decorator { color: #9fd09a; }
+.hljs-params { color: #ece3d6; }
+.reveal .hljs-ln-numbers { color: #6a6056; }
+
+/* ============================================================================
+   CHROME: progress bar, slide numbers, controls
+   ========================================================================== */
+.reveal .progress { color: var(--hot); height: 4px; }
+.reveal .slide-number {
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 13px;
+}
+.reveal .controls { color: var(--hot); }
+
+/* Tiny tag in a corner (e.g. DRAFT / TK) */
+.reveal .tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 0.5em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hot);
+  border: 1px solid var(--hot);
+  border-radius: 999px;
+  padding: 0.25em 0.9em;
+  margin-bottom: 1em;
+}
+
+/* file:// warning banner (shown by index.html when not served over http) */
+#serve-warning {
+  position: fixed; inset: 0; z-index: 9999;
+  display: none;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  padding: 12vh 8vw;
+}
+#serve-warning code { font-family: var(--mono); background: var(--paper-2); padding: 0.15em 0.45em; border-radius: 5px; }
+#serve-warning h1 { font-family: var(--display); font-size: 2.2em; color: var(--hot); }
+
+/* DEBUG palette switcher — subtle until hover, hidden in PDF export. Remove when done. */
+#palette-switch {
+  position: fixed; right: 10px; top: 8px; z-index: 60;
+  display: flex; align-items: center; gap: 6px;
+  font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em;
+  background: rgba(0, 0, 0, 0.4); color: #fff;
+  padding: 4px 9px; border-radius: 7px;
+  opacity: 0.25; transition: opacity 0.15s;
+}
+#palette-switch:hover { opacity: 1; }
+#palette-switch select { font-family: inherit; font-size: 12px; }
+@media print { #palette-switch { display: none; } }
