@@ -87,23 +87,23 @@ There's all sorts of data out there waiting to be liberated. How many kids get h
      (# → <h1>, URLs autolink). The "N. Verb" label is a standalone <figcaption>. -->
 
 <pre><code class="language-python" data-trim data-line-numbers>import datetime as dt, requests, pandas as pd
-etiquetas = {20: "Temperatura del agua", 21: "Viento"}
-hoy = dt.date.today()
+labels = {20: "Water temperature", 21: "Wind"}
+today = dt.date.today()
 
-consulta = {
-    "startDate": (hoy - dt.timedelta(days=7)).isoformat(),
-    "endDate": hoy.isoformat(),
+query = {
+    "startDate": (today - dt.timedelta(days=7)).isoformat(),
+    "endDate": today.isoformat(),
     "obsDatasetId": 98,
-    "parameterId": ",".join(map(str, etiquetas)),
+    "parameterId": ",".join(map(str, labels)),
 }
 res = requests.get("https://seagull-api.glos.org/api/v1/obs",
-                   params=consulta).json()
+                   params=query).json()
 
-# aplanar el JSON anidado en una sola tabla ordenada
-filas = [{**obs, "parametro": etiquetas[p["parameter_id"]]}
-         for p in res[0]["parameters"] for obs in p["observations"]]
-df = pd.DataFrame(filas)
-df["fecha"] = pd.to_datetime(df["timestamp"])
+# flatten the nested JSON into one tidy table
+rows = [{**obs, "parameter": labels[p["parameter_id"]]}
+        for p in res[0]["parameters"] for obs in p["observations"]]
+df = pd.DataFrame(rows)
+df["date"] = pd.to_datetime(df["timestamp"])
 </code></pre>
 
 <figcaption class="step"><span class="n">2.</span> Process</figcaption>
@@ -115,18 +115,18 @@ Processing. I built a query for a few recent days, pulled the JSON, and flattene
 
 <!-- .slide: class="step" -->
 
-<pre><code class="language-python" data-trim data-line-numbers># solo la temperatura del agua, promedio diario
-agua = (df[df.parametro == "Temperatura del agua"]
-        .set_index("fecha")["value"].resample("D").mean())
+<pre><code class="language-python" data-trim data-line-numbers># water temperature only, daily average
+water = (df[df.parameter == "Water temperature"]
+         .set_index("date")["value"].resample("D").mean())
 
-# "escala sentida": clasificar la temperatura en bandas cualitativas
-bordes = [-99, 12, 14, 16, 18, 22, 24, 99]
-nombres = ["peligroso", "vigorizante", "terapéutico", "tolerable",
-           "nadable", "🤩 perfecto", "muy cálido :/"]
-sensacion = pd.cut(agua, bins=bordes, labels=nombres)
+# "felt scale": classify the temperature into qualitative bands
+edges = [-99, 12, 14, 16, 18, 22, 24, 99]
+names = ["dangerous", "bracing", "therapeutic", "tolerable",
+         "swimmable", "🤩 perfect", "too warm :/"]
+feel = pd.cut(water, bins=edges, labels=names)
 
-print("hoy el lago se siente:", sensacion.iloc[-1])
-sensacion.value_counts()   # cuántos días en cada sensación
+print("today the lake feels:", feel.iloc[-1])
+feel.value_counts()   # how many days in each feeling
 </code></pre>
 
 <figcaption class="step"><span class="n">3.</span> Analyze</figcaption>
