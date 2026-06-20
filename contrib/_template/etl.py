@@ -23,11 +23,17 @@ _SKILL = Path(__file__).resolve().parents[2] / ".claude" / "skills" / "colombia-
 if str(_SKILL) not in sys.path:
     sys.path.insert(0, str(_SKILL))
 import socrata  # noqa: E402
+import render  # noqa: E402  (mismo skill: genera la página HTML)
 
 # --- 1) CONFIG: cambia esto por tu dataset -----------------------------------
 DOMAIN = "www.datos.gov.co"
 DATASET_ID = "n48w-gutb"  # TODO: pon aquí el 4x4 de TU dataset
 OUT_DIR = Path(__file__).resolve().parent / "data"
+
+# Para la página HTML que se publica (gráfica de barras + tabla):
+LABEL_COL = "anno"   # TODO: columna de categoría (las filas de la tabla)
+VALUE_COL = "valor"  # TODO: columna numérica (el largo de la barra)
+TITLE = "Accesos a internet fijo por año"  # TODO: título de TU página
 
 
 # --- 2) LIMPIEZA: función pura y fácil de probar -----------------------------
@@ -64,7 +70,16 @@ def dashboard(context: AssetExecutionContext, clean_data: pd.DataFrame) -> dict:
     (OUT_DIR / "dashboard.json").write_text(
         json.dumps(records, ensure_ascii=False, indent=2), encoding="utf-8"
     )
-    context.add_output_metadata({"rows": MetadataValue.int(len(records))})
+    # ...y una página HTML autocontenida (gráfica + tabla) para abrir o compartir.
+    page = render.bar_chart_html(
+        records, label_key=LABEL_COL, value_key=VALUE_COL,
+        title=TITLE, source=f"datos.gov.co ({DATASET_ID})",
+    )
+    (OUT_DIR / "index.html").write_text(page, encoding="utf-8")
+    context.add_output_metadata({
+        "rows": MetadataValue.int(len(records)),
+        "page": MetadataValue.path(str(OUT_DIR / "index.html")),
+    })
     return {"records": records}
 
 

@@ -69,14 +69,21 @@ root**. JSON goes to **stdout**; size hints, warnings, and the DANE bail message
      `rm -rf contrib/<nombre>/cassettes` (the copied cassette is for the template's
      dataset — clearing it lets the test re-record against the new one on first run).
    - **Adapt it:** in `contrib/<nombre>/etl.py`, set `DATASET_ID` + the `raw` asset's SoQL
-     query, and adapt `clean()` to their columns (Socrata sends everything as text — cast
-     the numbers). It reuses this skill's `socrata.py` and writes a `dashboard.json`.
+     query, adapt `clean()` to their columns (Socrata sends everything as text — cast the
+     numbers), and set `LABEL_COL`/`VALUE_COL`/`TITLE`. It reuses this skill's `socrata.py` +
+     `render.py` and writes both a `dashboard.json` **and a self-contained `index.html`** (bar
+     chart + table) they can open in a browser or share — the "visualize + publish" step.
    - **Run it** — this needs the pipeline deps (Dagster/pandas), which the stdlib skill does
      *not* install; set them up once (README "Camino 1" paso 3 / "Camino 2" paso 2), then
      `source pipeline/.venv/bin/activate`. Quick headless check (no server, writes the JSON):
      `dagster asset materialize --select '*' -f contrib/<nombre>/etl.py`. For the visual UI
      instead: `dagster dev -f contrib/<nombre>/etl.py` (a server on :3000). Test:
      `pytest contrib/<nombre>`.
+   - **Quick page without a pipeline:** to turn *any* query straight into that shareable
+     page, pipe it to `html` (from the skill root): `python3 scripts/cli.py query <4x4>
+     --select "..." --group ... > rows.json`, then `python3 scripts/cli.py html rows.json
+     --label <col> --value <col> --title "..." --source "datos.gov.co (<4x4>)" --out page.html`.
+     Same `render.py` the pipeline uses.
    - **Close the loop the way the class does (issue → rama → PR).** Merging student
      pipelines into the repo is out of scope, but offer to give them the real flow: put it
      on a branch (`git checkout -b contrib/<nombre>` and commit), and tell them they can open
