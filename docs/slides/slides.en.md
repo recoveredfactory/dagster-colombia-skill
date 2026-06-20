@@ -322,11 +322,11 @@ Three steps and you're ready to chat. One — install Claude: either Claude Code
 
 ---
 
-<p class="eyebrow">Just ask — in Spanish</p>
+<p class="eyebrow">Just ask, in Spanish</p>
 
 <div class="chat">
-  <p class="bubble you">Búscame el acceso a internet fijo por departamento en Colombia, 2023.</p>
-  <p class="bubble claude">Listo — encontré el dataset en datos.gov.co y, con el skill <code>colombia-open-data</code>, te armé tu propio pipeline: <b>raw → clean → dashboard</b>.</p>
+  <p class="bubble you"><span class="who">You</span>Búscame el acceso a internet fijo por departamento en Colombia, 2023.</p>
+  <p class="bubble claude"><span class="who">Claude</span>Listo — encontré el dataset en datos.gov.co y, con el skill <code>colombia-open-data</code>, te armé tu propio pipeline: <b>raw → clean → dashboard</b>.</p>
   <p class="bubble claude">Lo corrí. Top 5 departamentos (2023-T3): Bogotá D.C. 2.251.960 · Antioquia 1.615.103 · Valle del Cauca 916.250 · Cundinamarca 649.508 · Atlántico 470.721</p>
 </div>
 
@@ -354,8 +354,11 @@ Then ask Claude to turn those numbers into something you can see and share: a si
   <li>Research how a dataset is actually produced.</li>
   <li>Look for data that contradicts public rhetoric.</li>
   <li>Join two datasets — like the laws a politician wrote against the money they've taken.</li>
-  <li>Add Dagster or Prefect to make it a reliable, repeatable pipeline.</li>
 </ul>
 
+<p class="lead">And at the end, we'll come back together and share what we found.</p>
+
 Note:
-Where to take it. Chart or map something interesting. Dig into how a dataset is produced — who made it, how, and what's missing. Look for places the data contradicts what people in power say. Join one dataset to another — the legislation a politician has written against the donations they've received is a classic. And when a one-off becomes something you want to trust and repeat, wrap it in Dagster or Prefect. And remember: pair up, and trade off.
+Where to take it. Chart or map something interesting. Dig into how a dataset is produced — who made it, how, and what's missing. Look for places the data contradicts what people in power say. Join one dataset to another — the legislation a politician has written against the donations they've received is a classic. And remember: pair up, and trade off.
+
+And we'll close the activity together — back as one group, sharing what we found: what surprised you, where you got stuck, what you want to keep digging into.

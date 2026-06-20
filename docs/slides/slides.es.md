@@ -325,11 +325,11 @@ Tres pasos y ya están listos para conversar. Uno — instala Claude: ya sea Cla
 
 ---
 
-<p class="eyebrow">Solo pregunta — en español</p>
+<p class="eyebrow">Solo pregunta, en español</p>
 
 <div class="chat">
-  <p class="bubble you">Búscame el acceso a internet fijo por departamento en Colombia, 2023.</p>
-  <p class="bubble claude">Listo — encontré el dataset en datos.gov.co y, con el skill <code>colombia-open-data</code>, te armé tu propio pipeline: <b>raw → clean → dashboard</b>.</p>
+  <p class="bubble you"><span class="who">Tú</span>Búscame el acceso a internet fijo por departamento en Colombia, 2023.</p>
+  <p class="bubble claude"><span class="who">Claude</span>Listo — encontré el dataset en datos.gov.co y, con el skill <code>colombia-open-data</code>, te armé tu propio pipeline: <b>raw → clean → dashboard</b>.</p>
   <p class="bubble claude">Lo corrí. Top 5 departamentos (2023-T3): Bogotá D.C. 2.251.960 · Antioquia 1.615.103 · Valle del Cauca 916.250 · Cundinamarca 649.508 · Atlántico 470.721</p>
 </div>
 
@@ -357,8 +357,11 @@ Después pídele a Claude que convierta esos números en algo que puedas ver y c
   <li>Investiga cómo se produce realmente un dataset.</li>
   <li>Busca datos que contradigan el discurso público.</li>
   <li>Cruza dos datasets — como las leyes que escribió un político frente a la plata que ha recibido.</li>
-  <li>Agrega Dagster o Prefect para volverlo un pipeline confiable y repetible.</li>
 </ul>
 
+<p class="lead">Y al final, nos reunimos de nuevo para compartir lo que encontramos.</p>
+
 Note:
-Hacia dónde llevarlo. Grafica o mapea algo interesante. Indaga cómo se produce un dataset —quién lo hizo, cómo, y qué falta—. Busca lugares donde los datos contradicen lo que dice la gente con poder. Cruza un dataset con otro —la legislación que ha escrito un político frente a las donaciones que ha recibido es un clásico—. Y cuando algo de una sola vez se vuelve algo en lo que quieres confiar y repetir, envuélvelo en Dagster o Prefect. Y recuerden: trabajen en parejas y túrnense.
+Hacia dónde llevarlo. Grafica o mapea algo interesante. Indaga cómo se produce un dataset —quién lo hizo, cómo, y qué falta—. Busca lugares donde los datos contradicen lo que dice la gente con poder. Cruza un dataset con otro —la legislación que ha escrito un político frente a las donaciones que ha recibido es un clásico—. Y recuerden: trabajen en parejas y túrnense.
+
+Y vamos a cerrar la actividad todos juntos —de vuelta como un solo grupo, compartiendo lo que encontramos: qué te sorprendió, dónde te atascaste, qué quieres seguir explorando—.

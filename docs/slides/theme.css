@@ -55,7 +55,7 @@
   /* Type. Migra (serif display) for headlines, a plain system sans-serif for body &
      all labels. Migra is self-hosted from assets/fonts/; code uses --mono. (MondWest
      stays declared as a @font-face but is no longer wired in — it didn't read well.) */
-  --display:        "Migra", Georgia, "Times New Roman", serif;   /* titles, big words */
+  --display:        "Migra", "Fraunces", Georgia, "Times New Roman", serif;   /* titles; Fraunces (Google Fonts) is the high-contrast fallback when Migra is absent (e.g. the public Pages deck — Migra is gitignored) */
   --display-weight: 200;   /* Migra headline weight: 200 = Extralight (default), 800 = Extrabold */
   --sans:           system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;   /* body + ALL non-code labels (eyebrows, captions, credits) */
   --mono:           "Departure Mono", ui-monospace, "JetBrains Mono", monospace; /* code ONLY (needs true monospace) */
@@ -394,30 +394,67 @@ html, body, .reveal-viewport { background: var(--paper); }
 
 /* Chat mockup — speech bubbles showing a plain-language prompt to Claude (and its
    reply). Used in the activity to show you start by asking, not by writing code. */
-.reveal .chat { max-width: 22em; margin: 0.3em auto 0; }
+/* A polished 1:1 chat: you (right, solid) <-> Claude (left, panel card).
+   Phone-width column so the bubbles read like a real messaging app. */
+.reveal .chat {
+  max-width: 19em;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  text-align: left;
+}
 .reveal .chat .bubble {
   font-family: var(--sans);
-  font-size: 0.82em;
-  line-height: 1.4;
-  padding: 0.65em 0.95em;
-  border-radius: 16px;
-  margin: 0.55em 0;
+  font-size: 0.78em;
+  line-height: 1.5;
+  font-weight: 400;
+  padding: 0.6em 0.85em 0.7em;
+  border-radius: 1.15em;
   width: fit-content;
-  max-width: 88%;
+  max-width: 84%;
+  margin: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
+.reveal .chat .bubble code { font-size: 0.92em; }
+/* Sender name styled like a real chat header: sentence-case + a small avatar
+   dot in the speaker's color (accent for Claude), not a raw uppercase tag. */
+.reveal .chat .who {
+  display: flex;
+  align-items: center;
+  gap: 0.45em;
+  font-family: var(--sans);
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+  margin-bottom: 0.32em;
+}
+.reveal .chat .who::before {
+  content: "";
+  width: 0.66em; height: 0.66em;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+/* "you" = solid bubble. --ink/--paper are the base text/bg pair, so they
+   always invert correctly across every palette (light themes -> dark bubble,
+   dark themes -> light bubble). Do NOT use --on-dark here: on the green/amber
+   themes it equals --ink, so text vanished into the fill. */
 .reveal .chat .you {
-  margin-left: auto;
+  align-self: flex-end;
   background: var(--ink);
-  color: var(--on-dark);
-  border-bottom-right-radius: 5px;
+  color: var(--paper);
+  border-bottom-right-radius: 0.35em;
 }
+.reveal .chat .you .who { color: var(--paper); opacity: 0.72; }
 .reveal .chat .claude {
-  margin-right: auto;
+  align-self: flex-start;
   background: var(--paper-2);
-  color: var(--ink-soft);
+  color: var(--ink);
   border: 1px solid var(--line);
-  border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 0.35em;
 }
+.reveal .chat .claude .who { color: var(--hot); }
 
 /* A row of two landscape shots */
 .reveal .shots { display: flex; gap: 1.6em; align-items: center; justify-content: center; }
