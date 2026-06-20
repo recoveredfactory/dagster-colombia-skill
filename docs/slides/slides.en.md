@@ -159,6 +159,8 @@ I didn't do a lot of reporting for this, though I did call and spoke with the pe
   <figure><img class="phone" src="assets/cali-mobile-traffic-level-of-service.png" alt="Mapas Cali — traffic level of service (mobile)"></figure>
 </div>
 
+<p class="site-url">cali.recoveredfactory.net</p>
+
 Note:
 Now from Chicago to Cali. A few years ago I fell in love with someone here — and with the city: the culture, the mountains, the weather, the energy. So of course I wanted to see what data I could find about it. After digging, I found a map server that was hard to work with but full of fascinating data — the city actually publishes a lot. This was 2024, before AI got good at code: I wrote a primitive scraper, saw it was a gold mine — tree density, a digital elevation model, the city in 3D — and set it aside because it was a lot of work to decode the system. In this regard, AI has been amazing. Sraping a system like this used to be too much for most beginners. When I came back to it, I simply asked Claude to pull every dataset the city advertises and process it for web mapping — but I still needed the mental model: how the system fits together, and which tools to use.
 

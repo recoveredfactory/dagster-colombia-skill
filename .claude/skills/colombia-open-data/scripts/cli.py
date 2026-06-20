@@ -6,6 +6,7 @@ Subcommands:
   search <keywords>        Discover datasets on datos.gov.co (Discovery API)
   schema <4x4>             List a dataset's columns + types (and a size sniff)
   query  <4x4> [SoQL...]   Run a SoQL query, printing JSON rows (sniffs size first)
+  html   <rows.json>       Render query JSON as a one-file HTML page (bar chart + table)
   dane-check <text>        Report whether a request is out-of-scope DANE microdata
 
 Runs under bare `python3` with no pip install (stdlib only). JSON goes to stdout;
@@ -25,6 +26,7 @@ import json
 import sys
 
 import dane
+import render
 import socrata
 
 
@@ -81,6 +83,30 @@ def cmd_query(args):
     return 0
 
 
+def cmd_html(args):
+    # Read query JSON from a file or stdin, so you can pipe:  query ... | html ...
+    raw = sys.stdin.read() if args.input in (None, "-") else open(args.input, encoding="utf-8").read()
+    try:
+        records = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        _err(f"No pude leer el JSON de entrada: {exc}")
+        return 1
+    if not isinstance(records, list):
+        _err("Se esperaba una LISTA de filas JSON (la salida de `query`).")
+        return 1
+    doc = render.bar_chart_html(
+        records, label_key=args.label, value_key=args.value,
+        title=args.title, subtitle=args.subtitle, source=args.source,
+    )
+    if args.out:
+        with open(args.out, "w", encoding="utf-8") as fh:
+            fh.write(doc)
+        _err(f"# página escrita en {args.out} ({len(records)} filas) — ábrela en el navegador")
+    else:
+        sys.stdout.write(doc)
+    return 0
+
+
 def cmd_dane_check(args):
     is_dane, reason = dane.is_probably_dane(args.text)
     if is_dane:
@@ -122,6 +148,17 @@ def build_parser():
                    help="fetch every matching row past the 50k page cap")
     q.add_argument("--no-sniff", action="store_true")
     q.set_defaults(func=cmd_query)
+
+    h = sub.add_parser("html", help="render query JSON as a one-file HTML page (bar chart + table)")
+    h.add_argument("input", nargs="?", default="-",
+                   help="JSON file from `query` (default: - = stdin, so you can pipe)")
+    h.add_argument("--label", required=True, help="column for the row label (e.g. departamento)")
+    h.add_argument("--value", required=True, help="numeric column for the bar (e.g. accesos)")
+    h.add_argument("--title", default="Tablero — datos.gov.co")
+    h.add_argument("--subtitle")
+    h.add_argument("--source", help="data source note for the footer (e.g. 'datos.gov.co (n48w-gutb)')")
+    h.add_argument("--out", help="write the page to this file (default: stdout)")
+    h.set_defaults(func=cmd_html)
 
     d = sub.add_parser("dane-check", help="is this request out-of-scope DANE microdata?")
     d.add_argument("text")

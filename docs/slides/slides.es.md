@@ -162,6 +162,8 @@ No hice mucha reportería para esto, aunque sí llamé y hablé con las personas
   <figure><img class="phone" src="assets/cali-mobile-traffic-level-of-service.png" alt="Mapas Cali — nivel de servicio del tráfico (móvil)"></figure>
 </div>
 
+<p class="site-url">cali.recoveredfactory.net</p>
+
 Note:
 Ahora de Chicago a Cali. Hace unos años me enamoré de alguien de aquí —y de la ciudad: la cultura, las montañas, el clima, la energía—. Así que, por supuesto, quise ver qué datos podía encontrar sobre ella. Después de escarbar, encontré un servidor de mapas difícil de manejar pero lleno de datos fascinantes —la ciudad en realidad publica muchísimo—. Esto fue en 2024, antes de que la IA se volviera buena con el código: escribí un scraper primitivo, vi que era una mina de oro —densidad de árboles, un modelo digital de elevación, la ciudad en 3D— y lo dejé a un lado porque era mucho trabajo decodificar el sistema. En este sentido, la IA ha sido increíble. Hacerle scraping a un sistema así antes era demasiado para la mayoría de los principiantes. Cuando volví a retomarlo, simplemente le pedí a Claude que trajera cada dataset que la ciudad publica y lo procesara para mapas web —pero todavía necesitaba el modelo mental: cómo encaja todo el sistema y qué herramientas usar—.
 
