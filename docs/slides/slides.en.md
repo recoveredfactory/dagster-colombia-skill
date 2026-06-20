@@ -207,16 +207,17 @@ Why orchestrate a pipeline? At this scale — 350-plus layers, 6.6 GB of input �
 <pre><code class="language-python" data-trim data-line-numbers>import dagster as dg
 
 @dg.asset
-def raw_layers():
-    return scrape_idesc_catalog(to="data/raw")   # 1. acquire
+def layer_geojson():                         # 1. acquire
+    raw = download("cali:buildings")         #    one layer from the WFS server
+    return reproject(raw, to="EPSG:4326")    #    → standard lat/lon
 
 @dg.asset                              # name the arg after the asset above…
-def map_tiles(raw_layers):             # …and Dagster hands you its output
-    build_pmtiles(raw_layers, "cali.pmtiles")    # 2. process
+def layer_pmtiles(layer_geojson):      # …and Dagster hands you its output
+    return to_pmtiles(layer_geojson)         # 2. process → map tiles
 </code></pre>
 
 Note:
-If you write Python, Dagster is a great choice. It's *data-first*: each step is an asset — a noun, the thing you want to exist. Here's the key move: `raw_layers` returns its data, and the next asset just takes an argument with that same name — `def map_tiles(raw_layers)`. Dagster wires the two and hands the first asset's output straight to the second. Data flows from one asset to the next; you don't juggle files or globals. (If a step only needs to run *after* another but doesn't use its data, you'd write `deps=[...]` instead.) 
+If you write Python, Dagster is a great choice. It's *data-first*: each step is an asset — a noun, the thing you want to exist. These are the real assets from the Cali map pipeline, trimmed down. Here's the key move: `layer_geojson` returns its data, and the next asset just takes an argument with that same name — `def layer_pmtiles(layer_geojson)`. Dagster wires the two and hands the first asset's output straight to the second. Data flows from one asset to the next; you don't juggle files or globals. (If a step only needs to run *after* another but doesn't use its data, you'd write `deps=[...]` instead.) 
 
 Two alternatives worth knowing: Prefect turns existing Python into pipelines fast, with less structure — good when your work is verbs more than nouns ("notify me"). Airflow is mature but painful, mostly big enterprises and universities.
 
