@@ -4,7 +4,8 @@ description: >-
   Acquire data from Colombia's open-data portal datos.gov.co (which runs on
   Socrata). Use when the user wants to find, inspect, or query Colombian public
   datasets — search by keyword, read a dataset's columns, or pull rows with SoQL
-  filters/aggregations. Covers any Socrata-based Colombian portal (domain is a
+  filters/aggregations — then turn one into a small raw→clean→dashboard Dagster
+  pipeline of their own. Covers any Socrata-based Colombian portal (domain is a
   parameter). NOT for DANE microdata (census/GEIH/ECV unit records) — see "Scope".
 ---
 
@@ -58,6 +59,14 @@ message go to **stderr** (so you can pipe stdout safely).
      --select "anno,sum(no_de_accesos::number) as accesos" --group anno --order anno
    ```
    For a **top-N ranking**, add `--order "<col> desc" --limit N`.
+
+4. **Make it their own pipeline** (the real goal — not just a one-off query): once the
+   user likes a dataset, offer to scaffold a small **`raw → clean → dashboard`** Dagster
+   pipeline for it. The scaffold already exists — copy `contrib/_template/` to
+   `contrib/<name>/`, set `DATASET_ID` + the `raw` asset's SoQL query, and adapt `clean()`
+   to their columns (Socrata sends everything as text — cast the numbers). It reuses this
+   skill's `socrata.py` and writes a `dashboard.json` they can chart. Run it with
+   `dagster dev -f contrib/<name>/etl.py`. Details: `contrib/README.md`.
 
 ## Guaranteed-working demo (verified live)
 

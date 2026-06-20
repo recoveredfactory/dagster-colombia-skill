@@ -326,36 +326,12 @@ Three steps and you're ready to chat. One — install Claude: either Claude Code
 
 <div class="chat">
   <p class="bubble you">Búscame el acceso a internet fijo por departamento en Colombia, 2023.</p>
-  <p class="bubble claude">Listo. Uso el skill colombia-open-data: busco el dataset en datos.gov.co, leo sus columnas y traigo las cifras…</p>
+  <p class="bubble claude">Listo — encontré el dataset en datos.gov.co y, con el skill <code>colombia-open-data</code>, te armé tu propio pipeline: <b>raw → clean → dashboard</b>.</p>
+  <p class="bubble claude">Lo corrí. Top 5 departamentos (2023-T3): Bogotá D.C. 2.251.960 · Antioquia 1.615.103 · Valle del Cauca 916.250 · Cundinamarca 649.508 · Atlántico 470.721</p>
 </div>
 
 Note:
-You don't start by writing code — you just ask, in plain Spanish: "find me fixed-internet access by department, 2023." Claude recognizes the skill, searches datos.gov.co for the right dataset, reads its columns, and works out the query. You stay in the language of the question; the skill handles the plumbing.
-
----
-
-<!-- .slide: class="step" -->
-<!-- CODE SLIDE: bare top-level <pre> (see the note on the Seagull slide). -->
-
-<p class="eyebrow">Under the hood</p>
-
-<pre><code class="language-bash" data-trim data-line-numbers># Claude corre el skill por ti:
-python3 cli.py query n48w-gutb \
-  --select "departamento,sum(no_de_accesos::number) as accesos" \
-  --where "anno='2023' and trimestre='3'" \
-  --group departamento --order "accesos desc" --limit 5
-
-# Bogotá D.C.        2.251.960
-# Antioquia          1.615.103
-# Valle del Cauca      916.250
-# Cundinamarca         649.508
-# Atlántico            470.721
-</code></pre>
-
-<figcaption class="step">The skill in action</figcaption>
-
-Note:
-Here's what "the skill" actually does. You ask a question; Claude turns it into a query against datos.gov.co and runs it. Two lessons hide in this one screen. First: we aggregate on the server — `sum()` grouped by department — so we pull five rows, not 2.8 million. Second: we pin one quarter (2023-T3), because subscribers are a *stock*, not a flow — adding up every quarter would count the same people over and over. Real numbers, straight from the source: Bogotá leads with 2.25 million.
+You don't start by writing code — you just ask, in plain Spanish: "find me fixed-internet access by department, 2023." The skill does more than fetch rows: Claude finds the right dataset on datos.gov.co and **scaffolds a small Dagster pipeline for it — raw → clean → dashboard — your very own**, then runs it. The numbers are just proof it worked (Bogotá leads at 2.25 million). Two lessons are baked into that pipeline. First, it aggregates on the server — `sum()` grouped by department — so it pulls a handful of rows, not 2.8 million. Second, it pins a single quarter (2023-T3), because subscribers are a *stock*, not a flow: adding up every quarter would count the same people twice. You stayed in the language of the question; the skill built the plumbing — and it's yours to keep and change.
 
 ---
 
