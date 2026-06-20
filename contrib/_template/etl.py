@@ -5,10 +5,11 @@ Copia esta carpeta a  contrib/<tu-nombre>/ , cambia DATASET_ID y la lógica de
 limpieza, y abre un Pull Request. Reutiliza el MISMO cliente del skill (socrata.py),
 así que no copies código HTTP.
 
-Correr en local (desde la raíz del repo):
-    uv run --project pipeline dagster dev -f contrib/_template/etl.py
+Correr en local (desde la raíz del repo; primero: source pipeline/.venv/bin/activate):
+    dagster asset materialize --select '*' -f contrib/_template/etl.py   # headless, escribe el JSON
+    dagster dev -f contrib/_template/etl.py                              # o la interfaz visual (:3000)
 Probar:
-    uv run --project pipeline pytest contrib/_template -m "not live"
+    pytest contrib/_template -m "not live"
 """
 import json
 import sys
@@ -18,7 +19,7 @@ import pandas as pd
 from dagster import AssetExecutionContext, Definitions, MetadataValue, asset
 
 # Reutiliza el cliente stdlib del skill (una sola fuente de verdad).
-_SKILL = Path(__file__).resolve().parents[2] / "skill" / "colombia-open-data" / "scripts"
+_SKILL = Path(__file__).resolve().parents[2] / ".claude" / "skills" / "colombia-open-data" / "scripts"
 if str(_SKILL) not in sys.path:
     sys.path.insert(0, str(_SKILL))
 import socrata  # noqa: E402

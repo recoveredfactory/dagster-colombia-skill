@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Acceso a internet fijo por departamento</title>
+<style>
+  html, body { margin: 0; }
+  body {
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1a1a1a;
+    padding: 34px 38px 30px;
+    width: 660px;
+  }
+  h1 { font-size: 21px; margin: 0 0 4px; }
+  p.sub { color: #6b7280; margin: 0 0 22px; font-size: 12.5px; }
+  table { border-collapse: collapse; width: 100%; }
+  td { padding: 7px 0; vertical-align: middle; }
+  td.dept { width: 132px; font-size: 13.5px; padding-right: 12px; }
+  td.num  { width: 96px; text-align: right; font-variant-numeric: tabular-nums;
+            font-size: 13.5px; color: #374151; padding-left: 14px; }
+  .track { background: #eef1f5; border-radius: 4px; }
+  .bar { height: 20px; background: #2563eb; border-radius: 4px; }
+  footer { margin-top: 18px; color: #9aa1ad; font-size: 11px; }
+</style>
+</head>
+<body>
+  <h1>Suscriptores de internet fijo por departamento</h1>
+  <p class="sub">Colombia · 2023, trimestre&nbsp;3 · fuente: datos.gov.co (n48w-gutb)</p>
+  <table>
+    <tr><td class="dept">Bogotá D.C.</td>     <td><div class="track"><div class="bar" style="width:100.0%"></div></div></td><td class="num">2.251.960</td></tr>
+    <tr><td class="dept">Antioquia</td>       <td><div class="track"><div class="bar" style="width:71.7%"></div></div></td><td class="num">1.615.103</td></tr>
+    <tr><td class="dept">Valle del Cauca</td> <td><div class="track"><div class="bar" style="width:40.7%"></div></div></td><td class="num">916.250</td></tr>
+    <tr><td class="dept">Cundinamarca</td>    <td><div class="track"><div class="bar" style="width:28.8%"></div></div></td><td class="num">649.508</td></tr>
+    <tr><td class="dept">Atlántico</td>       <td><div class="track"><div class="bar" style="width:20.9%"></div></div></td><td class="num">470.721</td></tr>
+  </table>
+  <footer>Generado con el skill colombia-open-data · una sola página, sin framework</footer>
+</body>
+</html>

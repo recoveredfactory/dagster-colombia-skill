@@ -8,7 +8,9 @@ from pathlib import Path
 
 import pytest
 
-SKILL_SCRIPTS = Path(__file__).resolve().parent / "skill" / "colombia-open-data" / "scripts"
+SKILL_SCRIPTS = (
+    Path(__file__).resolve().parent / ".claude" / "skills" / "colombia-open-data" / "scripts"
+)
 sys.path.insert(0, str(SKILL_SCRIPTS))
 
 

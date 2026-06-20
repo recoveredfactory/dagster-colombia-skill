@@ -38,7 +38,11 @@ But I also do this for fun and pleasure and my own curiosity and sense of beauty
 </ol>
 
 Note:
-Every project starts with a get the data, clean it into something you can work with, find what it means and show it, write it up, and put it in front of people. We'll do exactly this with the lake.
+Every project starts with a two part question: The first part is something like: Do parking tickets send people into bankruptcy? What neighborhoods have the most garbage dumpsters? 
+
+The second part is: Did somebody measure that?
+
+If the answer is yes, you then need to get the data, clean it into something you can work with, find what it means and show it, write it up, and put it out in the world.
 
 ---
 
@@ -47,7 +51,9 @@ Every project starts with a get the data, clean it into something you can work w
 <h2 class="overlay-q">Is the water warm enough to swim?</h2>
 
 Note:
-But let's start with something joyful. I used to live in Chicago, on a huge lake — basically a sea. I loved to go for a run and then jump in the water when I lived near one of the beaches.
+Let's start with a joyful project. The question was this: Is it warm enough to go swimming?
+
+ I used to live in Chicago, on a huge lake — basically a sea. I loved to go for a run and then jump in the water when I lived near one of the beaches.
 
 ---
 
@@ -56,7 +62,7 @@ But let's start with something joyful. I used to live in Chicago, on a huge lake
 <p class="photo-credit">"Frozen Staircase to Lake Michigan" — <a href="https://flickr.com/photos/shutterrunner/32404337645/">Shutter Runner / Flickr</a> · CC BY-NC 2.0</p>
 
 Note:
-The problem: Chicago is cold most of the year. So I wanted to know — when is the lake warm enough, for what *I* can tolerate, to go swimming? Every project starts with a question like that.
+The problem: Chicago is cold most of the year. This isn't my photo, but it's from same beach just looking the other direction. And in the middle of winter. So I wanted to know: When is the lake warm enough, for what *I* can tolerate, to go swimming? 
 
 ---
 
@@ -68,7 +74,7 @@ The problem: Chicago is cold most of the year. So I wanted to know — when is t
 </figure>
 
 Note:
-First task: get the data. I figured there must be sensors in the lake measuring temperature and wind. Are they public? A few searches later — yes. A university had just published an API for every sensor in the entire Great Lakes region. It's called Seagull.
+Again: I wonder if somebody measures that? In this case I figured there must be sensors in the lake measuring temperature and wind. A lot of environmental monitoring in the US is public, so I guessed maybe I had a chance of finding something. Miraculously, a few searches later, I found out that yes! A university had just published an API for every sensor in the entire Great Lakes region. It's called Seagull.
 
 There's all sorts of data out there waiting to be liberated. How many kids get hurt on trampolines? A US agency tracks that. And especially in Mexico and Colombia there's *more* interesting public data than in the US right now — it's just locked up in old, peculiar systems.
 
@@ -81,23 +87,23 @@ There's all sorts of data out there waiting to be liberated. How many kids get h
      (# → <h1>, URLs autolink). The "N. Verb" label is a standalone <figcaption>. -->
 
 <pre><code class="language-python" data-trim data-line-numbers>import datetime as dt, requests, pandas as pd
-etiquetas = {20: "Temperatura del agua", 21: "Viento"}
-hoy = dt.date.today()
+labels = {20: "Water temperature", 21: "Wind"}
+today = dt.date.today()
 
-consulta = {
-    "startDate": (hoy - dt.timedelta(days=7)).isoformat(),
-    "endDate": hoy.isoformat(),
+query = {
+    "startDate": (today - dt.timedelta(days=7)).isoformat(),
+    "endDate": today.isoformat(),
     "obsDatasetId": 98,
-    "parameterId": ",".join(map(str, etiquetas)),
+    "parameterId": ",".join(map(str, labels)),
 }
 res = requests.get("https://seagull-api.glos.org/api/v1/obs",
-                   params=consulta).json()
+                   params=query).json()
 
-# aplanar el JSON anidado en una sola tabla ordenada
-filas = [{**obs, "parametro": etiquetas[p["parameter_id"]]}
-         for p in res[0]["parameters"] for obs in p["observations"]]
-df = pd.DataFrame(filas)
-df["fecha"] = pd.to_datetime(df["timestamp"])
+# flatten the nested JSON into one tidy table
+rows = [{**obs, "parameter": labels[p["parameter_id"]]}
+        for p in res[0]["parameters"] for obs in p["observations"]]
+df = pd.DataFrame(rows)
+df["date"] = pd.to_datetime(df["timestamp"])
 </code></pre>
 
 <figcaption class="step"><span class="n">2.</span> Process</figcaption>
@@ -109,24 +115,28 @@ Processing. I built a query for a few recent days, pulled the JSON, and flattene
 
 <!-- .slide: class="step" -->
 
-<pre><code class="language-python" data-trim data-line-numbers># solo la temperatura del agua, promedio diario
-agua = (df[df.parametro == "Temperatura del agua"]
-        .set_index("fecha")["value"].resample("D").mean())
+<pre><code class="language-python" data-trim data-line-numbers># water temperature only, daily average
+water = (df[df.parameter == "Water temperature"]
+         .set_index("date")["value"].resample("D").mean())
 
-# "escala sentida": clasificar la temperatura en bandas cualitativas
-bordes = [-99, 12, 14, 16, 18, 22, 24, 99]
-nombres = ["peligroso", "vigorizante", "terapéutico", "tolerable",
-           "nadable", "🤩 perfecto", "muy cálido :/"]
-sensacion = pd.cut(agua, bins=bordes, labels=nombres)
+# "felt scale": classify the temperature into qualitative bands
+edges = [-99, 12, 14, 16, 18, 22, 24, 99]
+names = ["dangerous", "bracing", "therapeutic", "tolerable",
+         "swimmable", "🤩 perfect", "too warm :/"]
+feel = pd.cut(water, bins=edges, labels=names)
 
-print("hoy el lago se siente:", sensacion.iloc[-1])
-sensacion.value_counts()   # cuántos días en cada sensación
+print("today the lake feels:", feel.iloc[-1])
+feel.value_counts()   # how many days in each feeling
 </code></pre>
 
 <figcaption class="step"><span class="n">3.</span> Analyze</figcaption>
 
 Note:
-Analysis is deciding what the numbers *mean*. I have no intuition for 14°C versus 20°C, so I looked up what scientists consider dangerous — that was my floor. Then, every time I swam, I logged the temperature and how it actually felt. Enough entries, and I could map that experience back onto the data — a "felt scale" that turns a number into a feeling. `pd.cut` does exactly that: it slices the continuous temperature into my named bands. 22°C feels perfect after a hard run. The numbers are a signal — but it's my experience combined with them that gives them meaning.
+Analysis is deciding what the numbers *mean*. I have no intuition for 14°C versus 20°C, so I looked up what scientists consider dangerous — that was my floor. Then, every time I swam, I logged the temperature and how it actually felt. Enough entries, and I could map that experience back onto the data — a "felt scale" that turns a number into a feeling. `pd.cut` does exactly that: it slices the continuous temperature into my named bands. 22°C feels perfect after a hard run. 
+
+The numbers are a signal — but it's my experience combined with them that gives them meaning.
+
+The lake now sometimes exceeds 24c, which feels great as well but is higher than any previously recorded temperature. Even in this fun project, a little reminder of climate change.
 
 ---
 
@@ -138,17 +148,33 @@ Analysis is deciding what the numbers *mean*. I have no intuition for 14°C vers
 </figure>
 
 Note:
-And there's the answer in one picture — the temperature line riding over my colored "feels" bands. The lake reaches swimmable in early summer and holds it into the fall. This is the "and visualization" half of step three.
+You can't analyze without visualizing. This chart and these sentences map my opinions and experience of the lake conditions onto the data, and then present them in a way that deepens our understanding: The line chart shows us not only the current temperature, but the trend.
+
+I didn't do a lot of reporting for this, though I did call and spoke with the people who make the API to make sure I was using the system correctly and using the right numbers. And i published my work in a public notebook.
 
 ---
 
 <div class="phones">
-  <figure><img class="phone" src="assets/cali-mapa-1.svg" alt="Cali Mapas mobile"></figure>
-  <figure><img class="phone" src="assets/cali-mapa-2.svg" alt="Cali Mapas mobile"></figure>
+  <figure><img class="phone" src="assets/cali-mobile-trees.png" alt="Mapas Cali — tree-density heatmap (mobile)"></figure>
+  <figure><img class="phone" src="assets/cali-mobile-traffic-level-of-service.png" alt="Mapas Cali — traffic level of service (mobile)"></figure>
 </div>
 
 Note:
-Now from Chicago to Cali. A few years ago I fell in love with someone here — and with the city: the culture, the mountains, the weather, the energy. So of course I wanted to see what data I could find about it. After digging, I found a map server that was hard to work with but full of fascinating data — the city actually publishes a lot. This was 2024, before AI got good at code: I wrote a primitive scraper, saw it was a gold mine — tree density, a digital elevation model, the city in 3D — and set it aside, because scraping a system like this used to be too much for most beginners. When I came back, I simply asked Claude to pull every dataset the city advertises and process it for web mapping — but I still needed the mental model: how the system fits together, and which tools to use.
+Now from Chicago to Cali. A few years ago I fell in love with someone here — and with the city: the culture, the mountains, the weather, the energy. So of course I wanted to see what data I could find about it. After digging, I found a map server that was hard to work with but full of fascinating data — the city actually publishes a lot. This was 2024, before AI got good at code: I wrote a primitive scraper, saw it was a gold mine — tree density, a digital elevation model, the city in 3D — and set it aside because it was a lot of work to decode the system. In this regard, AI has been amazing. Sraping a system like this used to be too much for most beginners. When I came back to it, I simply asked Claude to pull every dataset the city advertises and process it for web mapping — but I still needed the mental model: how the system fits together, and which tools to use.
+
+---
+
+<p class="eyebrow">The pillars</p>
+
+<ul class="stack">
+  <li><b>Dagster</b> — Python-based; "orchestrates" data pipelines to process the data.</li>
+  <li><b>Protomaps</b> — processes and converts the data for modern systems.</li>
+  <li><b>SvelteKit w/ Maplibre</b> — Sveltekit offers a simple frontend (many such options), Maplibre is the current best open web mapping library.</li>
+  <li><b>AWS + SST</b> — deployment.</li>
+</ul>
+
+Note:
+These are the four pillars of the Cali build — the answer to "which tools to use." Dagster orchestrates the pipeline in Python: acquire, then process. Protomaps converts hundreds of layers into one modern, efficient tile format. MapLibre draws the map in the browser, with SvelteKit as a lightweight frontend around it. AWS, wired up with SST, puts it online. 
 
 ---
 
@@ -176,21 +202,22 @@ Why orchestrate a pipeline? At this scale — 350-plus layers, 6.6 GB of input �
 
 ---
 
-<p class="eyebrow">Dagster · assets &amp; dependencies</p>
+<p class="eyebrow">Dagster · passing data between assets</p>
 
 <pre><code class="language-python" data-trim data-line-numbers>import dagster as dg
 
 @dg.asset
-def raw_layers():
-    scrape_idesc_catalog(to="data/raw")       # 1. acquire
+def layer_geojson():                         # 1. acquire
+    raw = download("cali:buildings")         #    one layer from the WFS server
+    return reproject(raw, to="EPSG:4326")    #    → standard lat/lon
 
-@dg.asset(deps=[raw_layers])                  # ← depends on the step above
-def map_tiles():
-    build_pmtiles("data/raw", "cali.pmtiles") # 2. process
+@dg.asset                              # name the arg after the asset above…
+def layer_pmtiles(layer_geojson):      # …and Dagster hands you its output
+    return to_pmtiles(layer_geojson)         # 2. process → map tiles
 </code></pre>
 
 Note:
-If you write Python, Dagster is a great choice. It's *data-first*: each step is an asset — a noun, the thing you want to exist — and you wire them with explicit dependencies, `deps=[...]`. At 6.6 GB you don't pass data through memory; each asset persists its output and the next one reads it. To process, first acquire — the same path as before, expressed in Python.
+If you write Python, Dagster is a great choice. It's *data-first*: each step is an asset — a noun, the thing you want to exist. These are the real assets from the Cali map pipeline, trimmed down. Here's the key move: `layer_geojson` returns its data, and the next asset just takes an argument with that same name — `def layer_pmtiles(layer_geojson)`. Dagster wires the two and hands the first asset's output straight to the second. Data flows from one asset to the next; you don't juggle files or globals. (If a step only needs to run *after* another but doesn't use its data, you'd write `deps=[...]` instead.) 
 
 Two alternatives worth knowing: Prefect turns existing Python into pipelines fast, with less structure — good when your work is verbs more than nouns ("notify me"). Airflow is mature but painful, mostly big enterprises and universities.
 
@@ -206,7 +233,7 @@ A quick tangent. "Data-first versus flow-first" sounds abstract — that underst
 ---
 
 <figure>
-  <img src="assets/cali-result.svg" alt="354 map layers of Cali">
+  <img src="assets/cali-3d.png" alt="Mapas Cali — 3D buildings view of the city">
   <figcaption>354 layers of Cali</figcaption>
 </figure>
 
@@ -224,7 +251,9 @@ A map of clinics, or underdeveloped zones, is inherently a map about justice and
 Note:
 In 2017–2018 I was part of a team of Mexican journalists who won the Premio Gabo for our work on clandestine mass graves and the disappeared. I built a map that millions of people saw.
 
-What made it good data journalism was curiosity aimed at accountability. The national government said about 230 graves had been found. But county and state authorities tracked graves too. We requested those records, added them up — and counted more than 2,000.
+What made it good data journalism was curiosity aimed at accountability. The national government said about 230 graves had been found. But county and state authorities tracked graves too. We requested those records, added them up — and counted almost 2,000. It became a symbol of the government's corruption.
+
+One thing we haven't talked about yet is how there are many types of data: There's measurement data, survey data, and administrative data. All of them are interesting but administrative data is often powerful for accountability because you can test claims against bureaucratic record-keeping or look at what powerful institutions _don't_ track.
 
 ---
 
@@ -267,12 +296,14 @@ Links: observablehq.com/@eads/waves-on-my-beach · data.adondevanlosdesaparecido
 
 <!-- .slide: class="divider" data-background-color="var(--dark)" -->
 
-<span class="tag">Activity · TK</span>
+<span class="tag">Activity</span>
 
 # Your turn
 
+<p class="lead">Pair up — it works best with one person looking things up and prompting, the other exploring the data and building.</p>
+
 Note:
-Your turn. You'll use a Claude skill plus your own curiosity to explore a Colombian dataset — walking the same path: acquire, process, analyze. (Fill this in once the activity is finalized.)
+Your turn. You'll point a Claude skill at Colombian open data and walk the same path as the whole talk — acquire, process, analyze. One tip before you start: pair up. This goes best when one of you is looking things up and steering the conversation while the other explores the data or builds — then trade off.
 
 ---
 
@@ -281,35 +312,53 @@ Your turn. You'll use a Claude skill plus your own curiosity to explore a Colomb
 <p class="eyebrow">Get set up</p>
 
 <ol class="steps-list">
-<li>Install deps — Claude + Python libs</li>
-<li>Install the skill</li>
-<li>Get to chatting</li>
+<li>Install Claude Code <em>or</em> Claude Desktop</li>
+<li>Clone the repo — the skill ships inside</li>
+<li>Open Claude Code via CLI, <em>or</em> the cloned folder in Claude Desktop → Code</li>
 </ol>
 
 Note:
-Three steps and you're ready. One — install Claude (Code or desktop) and the Python data libraries: pandas and friends. Two — drop the `colombia-open-data` skill where Claude can find it. Three — just ask, in plain Spanish: "find me internet-access data by department." Claude uses the skill to search datos.gov.co, read a dataset's columns, and pull exactly the rows you want. Then you walk the same path as the rest of the talk: acquire, process, analyze.
+Three steps and you're ready to chat. One — install Claude: either Claude Code (the terminal tool) or Claude Desktop (the app); and have Python 3.10+ locally — this is a Python class, so you run things on your own machine (need a library like pandas later? just ask Claude to install it). Two — clone the class repo; the `colombia-open-data` skill ships inside it, in `.claude/skills/`, so Claude finds it automatically — nothing to copy or install. Three — open the cloned folder in Claude: in Claude Code, run `claude` inside the folder; in Claude Desktop, open the folder and switch to Code. Either way the skill loads automatically and you're ready to ask — which is the next slide.
+
+---
+
+<p class="eyebrow">Just ask, in Spanish</p>
+
+<div class="chat">
+  <p class="bubble you"><span class="who">You</span>Búscame el acceso a internet fijo por departamento en Colombia, 2023.</p>
+  <p class="bubble claude"><span class="who">Claude</span>Listo — encontré el dataset en datos.gov.co y, con el skill <code>colombia-open-data</code>, te armé tu propio pipeline: <b>raw → clean → dashboard</b>.</p>
+  <p class="bubble claude">Lo corrí. Top 5 departamentos (2023-T3): Bogotá D.C. 2.251.960 · Antioquia 1.615.103 · Valle del Cauca 916.250 · Cundinamarca 649.508 · Atlántico 470.721</p>
+</div>
+
+Note:
+You don't start by writing code — you just ask, in plain Spanish: "find me fixed-internet access by department, 2023." The skill does more than fetch rows: Claude finds the right dataset on datos.gov.co and **scaffolds a small Dagster pipeline for it — raw → clean → dashboard — your very own**, then runs it. The numbers are just proof it worked (Bogotá leads at 2.25 million). Two lessons are baked into that pipeline. First, it aggregates on the server — `sum()` grouped by department — so it pulls a handful of rows, not 2.8 million. Second, it pins a single quarter (2023-T3), because subscribers are a *stock*, not a flow: adding up every quarter would count the same people twice. You stayed in the language of the question; the skill built the plumbing — and it's yours to keep and change.
 
 ---
 
 <!-- .slide: class="step" -->
-<!-- CODE SLIDE: bare top-level <pre> (see the note on the Seagull slide). -->
 
-<p class="eyebrow">"¿Suscriptores de internet fijo por departamento?"</p>
-
-<pre><code class="language-bash" data-trim data-line-numbers># Claude corre el skill por ti:
-python3 cli.py query n48w-gutb \
-  --select "departamento,sum(no_de_accesos::number) as accesos" \
-  --where "anno='2023' and trimestre='3'" \
-  --group departamento --order "accesos desc" --limit 5
-
-# Bogotá D.C.        2.251.960
-# Antioquia          1.615.103
-# Valle del Cauca      916.250
-# Cundinamarca         649.508
-# Atlántico            470.721
-</code></pre>
-
-<figcaption class="step">The skill in action</figcaption>
+<figure>
+  <img src="assets/activity-html-output.png" alt="A simple HTML bar chart of internet access by department">
+  <figcaption class="step">A page you can share</figcaption>
+</figure>
 
 Note:
-Here's what "the skill" actually does. You ask a question; Claude turns it into a query against datos.gov.co and runs it. Two lessons hide in this one screen. First: we aggregate on the server — `sum()` grouped by department — so we pull five rows, not 2.8 million. Second: we pin one quarter (2023-T3), because subscribers are a *stock*, not a flow — adding up every quarter would count the same people over and over. Real numbers, straight from the source: Bogotá leads with 2.25 million.
+Then ask Claude to turn those numbers into something you can see and share: a simple HTML page — a bar chart, a table, a little map. No framework, no build step, just one file you can open in a browser or send to a friend. That's "visualize and publish," scaled down.
+
+---
+
+<p class="eyebrow">Things to try next</p>
+
+<ul>
+  <li>Chart or map something that surprises you.</li>
+  <li>Research how a dataset is actually produced.</li>
+  <li>Look for data that contradicts public rhetoric.</li>
+  <li>Join two datasets — like the laws a politician wrote against the money they've taken.</li>
+</ul>
+
+<p class="lead">And at the end, we'll come back together and share what we found.</p>
+
+Note:
+Where to take it. Chart or map something interesting. Dig into how a dataset is produced — who made it, how, and what's missing. Look for places the data contradicts what people in power say. Join one dataset to another — the legislation a politician has written against the donations they've received is a classic. And remember: pair up, and trade off.
+
+And we'll close the activity together — back as one group, sharing what we found: what surprised you, where you got stuck, what you want to keep digging into.
