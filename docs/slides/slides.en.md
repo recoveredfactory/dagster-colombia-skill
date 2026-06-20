@@ -312,13 +312,13 @@ Your turn. You'll point a Claude skill at Colombian open data and walk the same 
 <p class="eyebrow">Get set up</p>
 
 <ol class="steps-list">
-<li>Install Claude Code + Python (3.10+)</li>
+<li>Install Claude Code <em>or</em> Claude Desktop</li>
 <li>Clone the repo — the skill ships inside</li>
-<li>Open Claude there and ask, in Spanish</li>
+<li>Open Claude Code via CLI, <em>or</em> the cloned folder in Claude Desktop → Code</li>
 </ol>
 
 Note:
-Three steps and you're ready. One — install Claude Code and Python locally; this is a Python class, so you run things on your own machine (need a library like pandas later? just ask Claude to install it). Two — clone the class repo; the `colombia-open-data` skill ships inside it, in `.claude/skills/`, so Claude finds it automatically when you open Claude in that folder — nothing to copy or install. Three — just ask, in plain Spanish: "find me internet-access data by department." Claude uses the skill to search datos.gov.co, read a dataset's columns, and pull exactly the rows you want. Then you walk the same path as the rest of the talk: acquire, process, analyze.
+Three steps and you're ready to chat. One — install Claude: either Claude Code (the terminal tool) or Claude Desktop (the app); and have Python 3.10+ locally — this is a Python class, so you run things on your own machine (need a library like pandas later? just ask Claude to install it). Two — clone the class repo; the `colombia-open-data` skill ships inside it, in `.claude/skills/`, so Claude finds it automatically — nothing to copy or install. Three — open the cloned folder in Claude: in Claude Code, run `claude` inside the folder; in Claude Desktop, open the folder and switch to Code. Either way the skill loads automatically and you're ready to ask — which is the next slide.
 
 ---
 
