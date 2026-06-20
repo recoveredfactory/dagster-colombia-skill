@@ -64,13 +64,20 @@ root**. JSON goes to **stdout**; size hints, warnings, and the DANE bail message
 
 4. **Make it their own pipeline** (the real goal — not just a one-off query): once the
    user likes a dataset, offer to scaffold a small **`raw → clean → dashboard`** Dagster
-   pipeline for it. The scaffold already exists. **From the repo root:**
-   - **Copy the template:** `cp -r contrib/_template contrib/<nombre>`, then
-     `rm -rf contrib/<nombre>/cassettes` (the copied cassette is for the template's
-     dataset — clearing it lets the test re-record against the new one on first run).
-   - **Adapt it:** in `contrib/<nombre>/etl.py`, set `DATASET_ID` + the `raw` asset's SoQL
-     query, adapt `clean()` to their columns (Socrata sends everything as text — cast the
-     numbers), and set `LABEL_COL`/`VALUE_COL`/`TITLE`. It reuses this skill's `socrata.py` +
+   pipeline for it. **This step needs the cloned class repo** (Claude Code, or the manual
+   README path) — the template + pipeline deps live in the repo, so a skill installed
+   standalone (e.g. Claude Desktop alone) can't do it. `scaffold` detects that and tells the
+   user; search/schema/query/`html` still work everywhere. **From the repo root:**
+   - **Scaffold it** with one command — it copies the template, pins the dataset, and
+     **prints the exact run steps** (so the student sees how to run it; relay that output):
+     ```bash
+     python3 .claude/skills/colombia-open-data/scripts/cli.py scaffold <nombre> --dataset <4x4>
+     ```
+     (It skips the template's cassette so the test re-records against the new dataset on
+     first run. From the skill root, drop the long path: `python3 scripts/cli.py scaffold …`.)
+   - **Adapt it:** in `contrib/<nombre>/etl.py` (`DATASET_ID` is already pinned), write the
+     `raw` asset's SoQL query, adapt `clean()` to their columns (Socrata sends everything as
+     text — cast the numbers), and set `LABEL_COL`/`VALUE_COL`/`TITLE`. It reuses this skill's `socrata.py` +
      `render.py` and writes both a `dashboard.json` **and a self-contained `index.html`** (bar
      chart + table) they can open in a browser or share — the "visualize + publish" step.
    - **Run it** — this needs the pipeline deps (Dagster/pandas), which the stdlib skill does
