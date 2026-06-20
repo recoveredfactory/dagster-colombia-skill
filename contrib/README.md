@@ -12,14 +12,16 @@ Aquí cada estudiante agrega su **propio** pipeline para un dataset de
    ```
    Anota el `id` (el 4x4, por ejemplo `n48w-gutb`).
 
-2. **Copia la plantilla** a una carpeta con tu nombre:
+2. **Crea tu carpeta** con un comando — copia la plantilla, fija tu dataset e **imprime los
+   pasos para correrlo** (desde la raíz del repo):
    ```bash
-   cp -r contrib/_template contrib/tu-nombre
-   rm -rf contrib/tu-nombre/cassettes   # el cassette copiado es del dataset de la plantilla
+   python3 .claude/skills/colombia-open-data/scripts/cli.py scaffold tu-nombre --dataset <4x4>
    ```
+   (Omite el cassette de la plantilla, así tu prueba lo graba contra tu dataset la 1.ª vez.
+   ¿Prefieres a mano? `cp -r contrib/_template contrib/tu-nombre && rm -rf contrib/tu-nombre/cassettes`.)
 
-3. **Edita `contrib/tu-nombre/etl.py`**: cambia `DATASET_ID`, la consulta SoQL, la
-   función `clean()` y `LABEL_COL`/`VALUE_COL`/`TITLE` (para la página). El cliente HTTP
+3. **Edita `contrib/tu-nombre/etl.py`**: la consulta SoQL (tu `DATASET_ID` ya quedó fijado),
+   la función `clean()` y `LABEL_COL`/`VALUE_COL`/`TITLE` (para la página). El cliente HTTP
    (`socrata.py`) y el render HTML (`render.py`) se reutilizan — no los copies.
 
 4. **Pruébalo.** Necesitas las dependencias del pipeline (Dagster, pandas); si aún no las
