@@ -23,8 +23,9 @@ Está anclado a **un** dataset real y verificado: `n48w-gutb` —
   ya está listo. Le pides datos en español y los obtienes en segundos. → [empieza aquí](#camino-1--con-claude-code-recomendado)
 - **Camino 2 — manual (pip + venv).** Los mismos pasos, a mano. Sirve como referencia (es lo
   que Claude hace por debajo) y como respaldo si no tienes Claude Code. → [aquí](#camino-2--manual-pip--venv)
-- **¿Sin instalar nada?** Abre el taller en **Google Colab**, todo en el navegador:
-  [`docs/colab_taller.ipynb`](docs/colab_taller.ipynb).
+
+> Esto es una clase de **Python**: corre todo **en tu máquina**. Necesitas Python 3.10+ local
+> (la mayoría de los Mac/Linux ya lo traen; en Windows instálalo desde [python.org](https://www.python.org/downloads/)).
 
 ---
 
