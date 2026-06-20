@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1067" width="1600" height="1067" role="img" aria-label="Placeholder: Lake Michigan in summer (your photo)">
+  <rect x="18" y="18" width="1564" height="1031" rx="14"
+        fill="none" stroke="#9a9182" stroke-width="3" stroke-dasharray="14 12"/>
+  
+    <g stroke="#9a9182" stroke-width="11.7" fill="none" stroke-linejoin="round" opacity="0.9">
+      <circle cx="663.5" cy="389.4" r="31.2" fill="#c8553f" stroke="none" opacity="0.85"/>
+      <polyline points="585.5,551.2 712.2,424.5 809.8,498.6 907.2,395.2 1024.2,551.2"/>
+    </g>
+  <text x="800" y="565" text-anchor="middle"
+        font-family="monospace" font-size="22" letter-spacing="3"
+        fill="#c8553f" font-weight="bold">IMAGE PLACEHOLDER</text>
+  <text text-anchor="middle" font-family="Georgia, serif" font-size="40"
+        fill="#8f877a" font-weight="bold"><tspan x="800" y="592.5">Lake Michigan in summer (your</tspan><tspan x="800" y="642.5">photo)</tspan></text>
+  <text x="800" y="995" text-anchor="middle"
+        font-family="monospace" font-size="18" fill="#a89e8d">assets/lake-summer.svg</text>
+  
+</svg>

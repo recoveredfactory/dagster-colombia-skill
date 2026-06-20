@@ -1,0 +1,18 @@
+# Plain-pip fallback for the pipeline — for anyone WITHOUT uv.
+#
+#   python -m venv .venv
+#   source .venv/bin/activate            # Windows: .venv\Scripts\activate
+#   pip install -r requirements.txt
+#
+# (uv users don't need this file: `uv sync --extra dev` reads pyproject.toml.
+#  Keep the versions here in sync with pipeline/pyproject.toml.)
+
+# --- runtime: the Dagster pipeline ---
+dagster>=1.13,<1.14
+dagster-webserver>=1.13,<1.14
+pandas>=2.2,<3
+
+# --- tests (offline cassettes) ---
+pytest>=8,<9
+pytest-recording>=0.13
+vcrpy>=6

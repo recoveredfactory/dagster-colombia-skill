@@ -1,0 +1,23 @@
+{
+  "_comment": "Every image the deck references. `tools/make_placeholders.py` reads this file and writes a labeled SVG placeholder for each entry to assets/<name>.svg. To use a real image, drop it in this folder and point the slide at it (or just overwrite the .svg). kind = shot | photo | phone | book.",
+  "assets": [
+    { "name": "mexico-graves-map",  "kind": "shot",  "label": "Mass-graves map — ¿A dónde van los desaparecidos?", "source": "data.adondevanlosdesaparecidos.org" },
+    { "name": "chicago-notebook",   "kind": "shot",  "label": "Observable notebook — Waves on my beach", "source": "observablehq.com/@eads/waves-on-my-beach" },
+    { "name": "lake-summer",        "kind": "photo", "label": "Lake Michigan in summer (your photo)" },
+    { "name": "lake-frozen",        "kind": "photo", "label": "Frozen Staircase to Lake Michigan", "source": "Shutter Runner / Flickr · CC BY-NC 2.0 · https://flickr.com/photos/shutterrunner/32404337645/" },
+    { "name": "seagull",            "kind": "shot",  "label": "Seagull — Great Lakes sensor API" },
+    { "name": "waves-charts-mejor", "kind": "shot",  "label": "Lake temperature chart w/ feels-bands (waves-charts-mejor.png)" },
+    { "name": "cali-mapa-1",        "kind": "phone", "label": "Cali Mapas — mobile view" },
+    { "name": "cali-mapa-2",        "kind": "phone", "label": "Cali Mapas — mobile view" },
+    { "name": "idesc-page",         "kind": "shot",  "label": "Geoportal IDESC — Cali's spatial-data catalog (1. Acquire)" },
+    { "name": "dagster-cali-map",   "kind": "shot",  "label": "Dagster — global asset lineage for the Cali map pipeline (real screenshot)" },
+    { "name": "dagster-pipeline",   "kind": "shot",  "label": "Dagster pipeline graph — UNUSED (replaced by dagster-cali-map.png; file kept for restore)" },
+    { "name": "cali-result",        "kind": "shot",  "label": "354 layers — the finished Cali map" },
+    { "name": "norvig",             "kind": "book",  "label": "Teach Yourself Programming in Ten Years (Norvig) — norvig.png" },
+    { "name": "desaparecidos-map",  "kind": "shot",  "label": "Premio Gabo project — the graves map" },
+    { "name": "fosas-2023",         "kind": "shot",  "label": "A dónde van los desaparecidos (2023) — 5,600+ graves, Comisión Nacional de Búsqueda", "source": "data.adondevanlosdesaparecidos.org" },
+    { "name": "tcr-police-protest", "kind": "phone", "label": "The Chicago Reporter — arrests for protest vs looting" },
+    { "name": "tmp-police-labor-01","kind": "phone", "label": "The Marshall Project — police labor (1)" },
+    { "name": "tmp-police-labor-02","kind": "phone", "label": "The Marshall Project — police labor (2)" }
+  ]
+}

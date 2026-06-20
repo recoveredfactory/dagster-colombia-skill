@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Periodismo de datos — David Eads</title>
+
+  <!-- Fonts: free bitmap fallbacks (Google Fonts). MondWest / NeueBit / Departure Mono
+       take over automatically if you drop them into assets/fonts/ — see that folder. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=DotGothic16&display=swap" rel="stylesheet">
+
+  <!-- reveal.js core + our theme -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+  <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+  <!-- Shown only when opened via file:// (external Markdown can't be fetched there) -->
+  <div id="serve-warning">
+    <h1>Serve this deck over HTTP</h1>
+    <p>The slides live in an external Markdown file, which the browser can't load from
+       <code>file://</code>. From this folder run:</p>
+    <p><code>python3 -m http.server 8000</code></p>
+    <p>then open <code>http://localhost:8000/</code> &nbsp;(add <code>?lang=es</code> for Spanish).</p>
+  </div>
+
+  <!-- DEBUG: live palette switcher, persisted in localStorage. Remove when decided. -->
+  <div id="palette-switch" title="Debug palette — saved across reloads">
+    <label for="palette-select">palette</label>
+    <select id="palette-select">
+      <option value="cream">cream + vermillion</option>
+      <option value="terminal">terminal green</option>
+      <option value="amber">terminal amber</option>
+      <option value="stark">stark modernist</option>
+    </select>
+  </div>
+
+  <div class="reveal">
+    <div class="slides">
+      <!-- Slides are authored in Markdown; the file is chosen by ?lang= below. -->
+      <section
+        data-markdown=""
+        data-separator="^\r?\n---\r?\n$"
+        data-separator-vertical="^\r?\n--\r?\n$"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"></section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/markdown/markdown.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.js"></script>
+
+  <script>
+    // --- Language switch: ?lang=es loads slides.es.md, default slides.en.md ---
+    const lang = (new URLSearchParams(location.search).get('lang') || 'en').toLowerCase();
+    document.documentElement.lang = lang;
+    document.querySelector('[data-markdown]').setAttribute('data-markdown', `slides.${lang}.md`);
+
+    // --- Friendly nudge when opened from disk (no http server) ---
+    if (location.protocol === 'file:') {
+      document.getElementById('serve-warning').style.display = 'block';
+    }
+
+    // --- DEBUG: persistent palette switcher (?theme= overrides; else saved choice) ---
+    const THEME_KEY = 'deck-theme';
+    const savedTheme = new URLSearchParams(location.search).get('theme')
+                       || localStorage.getItem(THEME_KEY) || 'cream';
+    document.documentElement.dataset.theme = savedTheme;
+    const paletteSel = document.getElementById('palette-select');
+    paletteSel.value = savedTheme;
+    paletteSel.addEventListener('change', () => {
+      document.documentElement.dataset.theme = paletteSel.value;
+      localStorage.setItem(THEME_KEY, paletteSel.value);
+    });
+
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0.045,
+      minScale: 0.2,
+      maxScale: 2.0,
+      hash: true,
+      slideNumber: 'c/t',
+      controls: true,
+      controlsTutorial: false,
+      progress: true,
+      center: true,
+      transition: 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      pdfSeparateFragments: false,
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+    });
+  </script>
+</body>
+</html>

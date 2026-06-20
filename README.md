@@ -18,12 +18,15 @@ Está anclado a **un** dataset real y verificado: `n48w-gutb` —
 
 ## Requisitos
 
-- **Python 3.10+** y **[uv](https://docs.astral.sh/uv/)** (gestor de paquetes).
-  Instalar uv: `curl -LsSf https://astral.sh/uv/install.sh | sh`
-  *(Si no puedes usar uv, sirve cualquier entorno con las dependencias de
-  `pipeline/pyproject.toml`: pip, conda, etc. — así es la vida.)*
-- **Node.js 20+** (probado con 22) para la web.
-- El **skill** corre con solo `python3` — no necesita instalar nada.
+- **Python 3.10+** — lo único imprescindible.
+- **Node.js 20+** (probado con 22) — solo para la web (paso 4).
+- Las dependencias de Python se instalan por **uno** de dos caminos (paso 2):
+  - **pip + venv** — estándar, funciona en cualquier máquina (no necesitas uv).
+  - **[uv](https://docs.astral.sh/uv/)** — opcional, más rápido:
+    `curl -LsSf https://astral.sh/uv/install.sh | sh`
+
+> 💡 **¿Sin ganas de instalar nada?** Abre el taller en **Google Colab** — todo corre
+> en el navegador: [`docs/colab_taller.ipynb`](docs/colab_taller.ipynb).
 
 ---
 
@@ -36,7 +39,17 @@ git clone https://github.com/recoveredfactory/dagster-colombia-skill.git
 cd dagster-colombia-skill
 ```
 
-### 1. (Opcional) Probar el skill sin instalar nada
+### 1. Verificar que todo funciona (sin instalar nada)
+
+El skill usa solo la librería estándar, así que corre con `python3` a secas. Un solo
+comando lo prueba en vivo contra datos.gov.co (también sirve para confirmar tu
+instalación más adelante):
+
+```bash
+python3 scripts/smoke.py
+```
+
+O llama al skill directamente:
 
 ```bash
 cd skill/colombia-open-data/scripts
@@ -47,12 +60,27 @@ python3 cli.py query n48w-gutb \
 cd ../../..
 ```
 
-### 2. Instalar el pipeline (con uv)
+### 2. Instalar las dependencias del pipeline (elige A o B)
+
+**Opción A — pip + venv** (sin uv, funciona en cualquier parte):
+
+```bash
+cd pipeline
+python -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+**Opción B — uv** (más rápido, si lo tienes):
 
 ```bash
 cd pipeline
 uv sync --extra dev
 ```
+
+> Los comandos siguientes usan el prefijo `uv run`. Si instalaste con **pip + venv**
+> (Opción A), mantén el entorno activado y **omite `uv run`**: corre `dagster …` y
+> `pytest …` directamente.
 
 ### 3. Correr el pipeline → genera el JSON
 
@@ -91,12 +119,15 @@ Abre <http://localhost:3001>: una **tabla** de accesos por departamento y una
 ### 5. Correr las pruebas
 
 ```bash
-# desde la raíz del repo
+# uv (desde la raíz del repo):
 uv run --project pipeline pytest -m "not live"
+
+# pip + venv (con el entorno activado, desde pipeline/):
+pytest -m "not live"
 ```
 
 Las pruebas usan **cassettes** (respuestas reales grabadas con vcrpy) y corren sin red.
-Para probar contra la API real: `uv run --project pipeline pytest -m live`.
+Para probar contra la API real, cambia a `-m live`.
 
 ---
 

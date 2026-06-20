@@ -31,3 +31,14 @@ web/next-env.d.ts
 .DS_Store
 
 # Note: web/public/data/*.json IS committed (the dashboard snapshot)
+
+# Slide deck: proprietary / personal-use fonts — NOT redistributable on a public repo.
+# (Local copies still render the deck; the public repo falls back to Google-CDN fonts.)
+docs/slides/assets/fonts/*.otf
+docs/slides/assets/fonts/*.ttf
+docs/slides/assets/fonts/*.woff
+docs/slides/assets/fonts/*.woff2
+docs/slides/assets/fonts/EULA-*.pdf
+docs/slides/assets/fonts/*license*.txt
+# Slide deck scratch
+docs/slides/scratch-ignore.md
