@@ -202,22 +202,21 @@ Why orchestrate a pipeline? At this scale — 350-plus layers, 6.6 GB of input �
 
 ---
 
-<p class="eyebrow">Dagster · assets &amp; dependencies</p>
+<p class="eyebrow">Dagster · passing data between assets</p>
 
 <pre><code class="language-python" data-trim data-line-numbers>import dagster as dg
 
 @dg.asset
 def raw_layers():
-    data = scrape_idesc_catalog(to="data/raw")       # 1. acquire
-    return data
+    return scrape_idesc_catalog(to="data/raw")   # 1. acquire
 
-@dg.asset(deps=[raw_layers])                  # ← depends on the step above
-def map_tiles(data):
-    build_pmtiles(data, "cali.pmtiles") # 2. process
+@dg.asset                              # name the arg after the asset above…
+def map_tiles(raw_layers):             # …and Dagster hands you its output
+    build_pmtiles(raw_layers, "cali.pmtiles")    # 2. process
 </code></pre>
 
 Note:
-If you write Python, Dagster is a great choice. It's *data-first*: each step is an asset — a noun, the thing you want to exist — and you wire them with explicit dependencies, `deps=[...]`. 
+If you write Python, Dagster is a great choice. It's *data-first*: each step is an asset — a noun, the thing you want to exist. Here's the key move: `raw_layers` returns its data, and the next asset just takes an argument with that same name — `def map_tiles(raw_layers)`. Dagster wires the two and hands the first asset's output straight to the second. Data flows from one asset to the next; you don't juggle files or globals. (If a step only needs to run *after* another but doesn't use its data, you'd write `deps=[...]` instead.) 
 
 Two alternatives worth knowing: Prefect turns existing Python into pipelines fast, with less structure — good when your work is verbs more than nouns ("notify me"). Airflow is mature but painful, mostly big enterprises and universities.
 
@@ -251,7 +250,9 @@ A map of clinics, or underdeveloped zones, is inherently a map about justice and
 Note:
 In 2017–2018 I was part of a team of Mexican journalists who won the Premio Gabo for our work on clandestine mass graves and the disappeared. I built a map that millions of people saw.
 
-What made it good data journalism was curiosity aimed at accountability. The national government said about 230 graves had been found. But county and state authorities tracked graves too. We requested those records, added them up — and counted more than 2,000.
+What made it good data journalism was curiosity aimed at accountability. The national government said about 230 graves had been found. But county and state authorities tracked graves too. We requested those records, added them up — and counted almost 2,000. It became a symbol of the government's corruption.
+
+One thing we haven't talked about yet is how there are many types of data: There's measurement data, survey data, and administrative data. All of them are interesting but administrative data is often powerful for accountability because you can test claims against bureaucratic record-keeping or look at what powerful institutions _don't_ track.
 
 ---
 
@@ -310,13 +311,13 @@ Your turn. You'll point a Claude skill at Colombian open data and walk the same 
 <p class="eyebrow">Get set up</p>
 
 <ol class="steps-list">
-<li>Install deps — Claude + Python libs</li>
-<li>Install the skill</li>
-<li>Get to chatting</li>
+<li>Install Claude Code + Python (3.10+)</li>
+<li>Clone the repo — the skill ships inside</li>
+<li>Open Claude there and ask, in Spanish</li>
 </ol>
 
 Note:
-Three steps and you're ready. One — install Claude (Code or desktop) and the Python data libraries: pandas and friends. Two — drop the `colombia-open-data` skill where Claude can find it. Three — just ask, in plain Spanish: "find me internet-access data by department." Claude uses the skill to search datos.gov.co, read a dataset's columns, and pull exactly the rows you want. Then you walk the same path as the rest of the talk: acquire, process, analyze.
+Three steps and you're ready. One — install Claude Code and Python locally; this is a Python class, so you run things on your own machine (need a library like pandas later? just ask Claude to install it). Two — clone the class repo; the `colombia-open-data` skill ships inside it, in `.claude/skills/`, so Claude finds it automatically when you open Claude in that folder — nothing to copy or install. Three — just ask, in plain Spanish: "find me internet-access data by department." Claude uses the skill to search datos.gov.co, read a dataset's columns, and pull exactly the rows you want. Then you walk the same path as the rest of the talk: acquire, process, analyze.
 
 ---
 
