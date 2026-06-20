@@ -7,17 +7,21 @@
     { "name": "lake-frozen",        "kind": "photo", "label": "Frozen Staircase to Lake Michigan", "source": "Shutter Runner / Flickr · CC BY-NC 2.0 · https://flickr.com/photos/shutterrunner/32404337645/" },
     { "name": "seagull",            "kind": "shot",  "label": "Seagull — Great Lakes sensor API" },
     { "name": "waves-charts-mejor", "kind": "shot",  "label": "Lake temperature chart w/ feels-bands (waves-charts-mejor.png)" },
-    { "name": "cali-mapa-1",        "kind": "phone", "label": "Cali Mapas — mobile view" },
-    { "name": "cali-mapa-2",        "kind": "phone", "label": "Cali Mapas — mobile view" },
+    { "name": "cali-mobile-trees",  "kind": "phone", "label": "Mapas Cali — tree-density heatmap (mobile, slide 9)" },
+    { "name": "cali-mobile-traffic-level-of-service", "kind": "phone", "label": "Mapas Cali — traffic level of service (mobile, slide 9)" },
+    { "name": "cali-mapa-1",        "kind": "phone", "label": "Cali Mapas mobile — UNUSED (replaced by cali-mobile-*.png; placeholder kept)" },
+    { "name": "cali-mapa-2",        "kind": "phone", "label": "Cali Mapas mobile — UNUSED (replaced by cali-mobile-*.png; placeholder kept)" },
     { "name": "idesc-page",         "kind": "shot",  "label": "Geoportal IDESC — Cali's spatial-data catalog (1. Acquire)" },
     { "name": "dagster-cali-map",   "kind": "shot",  "label": "Dagster — global asset lineage for the Cali map pipeline (real screenshot)" },
     { "name": "dagster-pipeline",   "kind": "shot",  "label": "Dagster pipeline graph — UNUSED (replaced by dagster-cali-map.png; file kept for restore)" },
-    { "name": "cali-result",        "kind": "shot",  "label": "354 layers — the finished Cali map" },
+    { "name": "cali-3d",            "kind": "shot",  "label": "Mapas Cali — 3D buildings view, the finished map (slide 15)" },
+    { "name": "cali-result",        "kind": "shot",  "label": "354 layers — finished Cali map — UNUSED (replaced by cali-3d.png; placeholder kept)" },
     { "name": "norvig",             "kind": "book",  "label": "Teach Yourself Programming in Ten Years (Norvig) — norvig.png" },
     { "name": "desaparecidos-map",  "kind": "shot",  "label": "Premio Gabo project — the graves map" },
     { "name": "fosas-2023",         "kind": "shot",  "label": "A dónde van los desaparecidos (2023) — 5,600+ graves, Comisión Nacional de Búsqueda", "source": "data.adondevanlosdesaparecidos.org" },
     { "name": "tcr-police-protest", "kind": "phone", "label": "The Chicago Reporter — arrests for protest vs looting" },
     { "name": "tmp-police-labor-01","kind": "phone", "label": "The Marshall Project — police labor (1)" },
-    { "name": "tmp-police-labor-02","kind": "phone", "label": "The Marshall Project — police labor (2)" }
+    { "name": "tmp-police-labor-02","kind": "phone", "label": "The Marshall Project — police labor (2)" },
+    { "name": "activity-html-output","kind": "shot",  "label": "Activity — simple HTML page built from the data (real screenshot)" }
   ]
 }

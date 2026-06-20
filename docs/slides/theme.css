@@ -392,6 +392,33 @@ html, body, .reveal-viewport { background: var(--paper); }
   align-items: flex-end;
 }
 
+/* Chat mockup — speech bubbles showing a plain-language prompt to Claude (and its
+   reply). Used in the activity to show you start by asking, not by writing code. */
+.reveal .chat { max-width: 22em; margin: 0.3em auto 0; }
+.reveal .chat .bubble {
+  font-family: var(--sans);
+  font-size: 0.82em;
+  line-height: 1.4;
+  padding: 0.65em 0.95em;
+  border-radius: 16px;
+  margin: 0.55em 0;
+  width: fit-content;
+  max-width: 88%;
+}
+.reveal .chat .you {
+  margin-left: auto;
+  background: var(--ink);
+  color: var(--on-dark);
+  border-bottom-right-radius: 5px;
+}
+.reveal .chat .claude {
+  margin-right: auto;
+  background: var(--paper-2);
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-bottom-left-radius: 5px;
+}
+
 /* A row of two landscape shots */
 .reveal .shots { display: flex; gap: 1.6em; align-items: center; justify-content: center; }
 .reveal .shots figure { flex: 1 1 0; min-width: 0; }
