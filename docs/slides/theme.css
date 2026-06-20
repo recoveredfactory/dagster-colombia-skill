@@ -178,6 +178,17 @@ html, body, .reveal-viewport { background: var(--paper); }
 .reveal .center { text-align: center; }
 .reveal .eyebrow.center { margin: 1.1em 0 0; }
 
+/* Live-site URL caption (e.g. under the Cali map phones) */
+.reveal .site-url {
+  font-family: var(--sans);
+  font-size: 0.66em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--hot);
+  text-align: center;
+  margin: 0.8em 0 0;
+}
+
 /* Book cover image: portrait, slimmer frame */
 .reveal img.frame.book { max-height: 66vh; border-radius: 4px; }
 /* Tall figure image — fills more of the slide (e.g. a near-square screenshot). */
