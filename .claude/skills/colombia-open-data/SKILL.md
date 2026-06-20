@@ -36,7 +36,7 @@ message. The bail logic lives in `scripts/dane.py` (`is_probably_dane`).
 
 ## Workflow
 
-Run from the **skill root** (`skill/colombia-open-data/`); commands use the path
+Run from the **skill root** (`.claude/skills/colombia-open-data/`); commands use the path
 `scripts/cli.py`. JSON goes to **stdout**; size hints, warnings, and the DANE bail
 message go to **stderr** (so you can pipe stdout safely).
 
@@ -85,5 +85,5 @@ Dataset **`n48w-gutb`** — *Internet Fijo: Accesos por tecnología y segmento*
   accent- and case-sensitive. On an empty result, check spelling/casing.
 - An optional `SODA_APP_TOKEN` env var lifts rate limits; everything works without one.
 - A single SODA page returns at most 50,000 rows; use `--paginate` to fetch past it.
-- The Dagster pipeline in `../../pipeline/` imports `scripts/socrata.py` directly —
+- The Dagster pipeline in `../../../pipeline/` imports `scripts/socrata.py` directly —
   the same acquisition code, one source of truth.

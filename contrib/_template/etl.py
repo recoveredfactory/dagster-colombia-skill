@@ -18,7 +18,7 @@ import pandas as pd
 from dagster import AssetExecutionContext, Definitions, MetadataValue, asset
 
 # Reutiliza el cliente stdlib del skill (una sola fuente de verdad).
-_SKILL = Path(__file__).resolve().parents[2] / "skill" / "colombia-open-data" / "scripts"
+_SKILL = Path(__file__).resolve().parents[2] / ".claude" / "skills" / "colombia-open-data" / "scripts"
 if str(_SKILL) not in sys.path:
     sys.path.insert(0, str(_SKILL))
 import socrata  # noqa: E402

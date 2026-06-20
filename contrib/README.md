@@ -8,7 +8,7 @@ Aquí cada estudiante agrega su **propio** pipeline para un dataset de
 
 1. **Elige un dataset** con el skill (desde la raíz del repo):
    ```bash
-   python3 skill/colombia-open-data/scripts/cli.py search "tu tema" --limit 5
+   python3 .claude/skills/colombia-open-data/scripts/cli.py search "tu tema" --limit 5
    ```
    Anota el `id` (el 4x4, por ejemplo `n48w-gutb`).
 
@@ -34,7 +34,7 @@ Aquí cada estudiante agrega su **propio** pipeline para un dataset de
 
 ## Reglas
 
-- Reutiliza `skill/colombia-open-data/scripts/socrata.py`; no dupliques código HTTP.
+- Reutiliza `.claude/skills/colombia-open-data/scripts/socrata.py`; no dupliques código HTTP.
 - Verifica tu `DATASET_ID` en vivo (que la consulta devuelva filas).
 - Agrega al menos una prueba (la plantilla ya trae dos).
 - Si tu dataset es enorme, **agrega en el servidor** (`$group`) en vez de descargar

@@ -57,7 +57,7 @@ de la web automáticamente.
 ## Reglas rápidas
 
 - **No** hagas commit directo a `main`.
-- Reutiliza el cliente del skill (`skill/colombia-open-data/scripts/socrata.py`); no
+- Reutiliza el cliente del skill (`.claude/skills/colombia-open-data/scripts/socrata.py`); no
   dupliques código HTTP.
 - Agrega o actualiza pruebas con tus cambios.
 - No subas tokens, secretos ni datos pesados.

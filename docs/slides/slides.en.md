@@ -169,12 +169,12 @@ Now from Chicago to Cali. A few years ago I fell in love with someone here — a
 <ul class="stack">
   <li><b>Dagster</b> — Python-based; "orchestrates" data pipelines to process the data.</li>
   <li><b>Protomaps</b> — processes and converts the data for modern systems.</li>
-  <li><b>MapLibre + SvelteKit</b> — web mapping, and a simple frontend.</li>
+  <li><b>SvelteKit w/ Maplibre</b> — Sveltekit offers a simple frontend (many such options), Maplibre is the current best open web mapping library.</li>
   <li><b>AWS + SST</b> — deployment.</li>
 </ul>
 
 Note:
-These are the four pillars of the Cali build — the answer to "which tools to use." Dagster orchestrates the pipeline in Python: acquire, then process. Protomaps converts hundreds of layers into one modern, efficient tile format. MapLibre draws the map in the browser, with SvelteKit as a lightweight frontend around it. AWS, wired up with SST, puts it online. You don't need all of this for a small project — but at 350 layers, each pillar earns its place.
+These are the four pillars of the Cali build — the answer to "which tools to use." Dagster orchestrates the pipeline in Python: acquire, then process. Protomaps converts hundreds of layers into one modern, efficient tile format. MapLibre draws the map in the browser, with SvelteKit as a lightweight frontend around it. AWS, wired up with SST, puts it online. 
 
 ---
 
@@ -208,15 +208,16 @@ Why orchestrate a pipeline? At this scale — 350-plus layers, 6.6 GB of input �
 
 @dg.asset
 def raw_layers():
-    scrape_idesc_catalog(to="data/raw")       # 1. acquire
+    data = scrape_idesc_catalog(to="data/raw")       # 1. acquire
+    return data
 
 @dg.asset(deps=[raw_layers])                  # ← depends on the step above
-def map_tiles():
-    build_pmtiles("data/raw", "cali.pmtiles") # 2. process
+def map_tiles(data):
+    build_pmtiles(data, "cali.pmtiles") # 2. process
 </code></pre>
 
 Note:
-If you write Python, Dagster is a great choice. It's *data-first*: each step is an asset — a noun, the thing you want to exist — and you wire them with explicit dependencies, `deps=[...]`. At 6.6 GB you don't pass data through memory; each asset persists its output and the next one reads it. To process, first acquire — the same path as before, expressed in Python.
+If you write Python, Dagster is a great choice. It's *data-first*: each step is an asset — a noun, the thing you want to exist — and you wire them with explicit dependencies, `deps=[...]`. 
 
 Two alternatives worth knowing: Prefect turns existing Python into pipelines fast, with less structure — good when your work is verbs more than nouns ("notify me"). Airflow is mature but painful, mostly big enterprises and universities.
 
