@@ -95,6 +95,49 @@
   --code-bg: #111111; --code-fg: #f2f2f2;
 }
 
+/* ============================================================================
+   FONT SETS — flip live with the corner selector (same mechanism as palettes,
+   but overriding only the type variables). The Google-Fonts families are loaded
+   in index.html. Default = "serif" (today's look). Reveal maps --r-heading-font
+   etc. off these vars, so overriding them on the root re-skins the whole deck.
+   ========================================================================== */
+
+/* Serif — the original pairing: Migra (self-hosted) → Fraunces (Google) for
+   headlines, a plain system sans for body & labels. This is the default. */
+:root[data-font="serif"] {
+  --display:        "Migra", "Fraunces", Georgia, "Times New Roman", serif;
+  --display-weight: 200;
+  --sans:           system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono:           "Departure Mono", ui-monospace, "JetBrains Mono", monospace;
+}
+
+/* Grotesk — modern, geometric, "Python-conference" feel. */
+:root[data-font="grotesk"] {
+  --display:        "Space Grotesk", system-ui, sans-serif;
+  --display-weight: 600;
+  --sans:           "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:           "IBM Plex Mono", ui-monospace, monospace;
+}
+
+/* Bitmap — playful pixel/CRT; pairs naturally with the terminal & amber palettes. */
+:root[data-font="bitmap"] {
+  --display:        "Pixelify Sans", system-ui, sans-serif;
+  --display-weight: 600;
+  --sans:           "DotGothic16", system-ui, sans-serif;
+  --mono:           "Departure Mono", ui-monospace, monospace;
+}
+
+/* Editorial — newspaper/magazine long-read: Newsreader serif for BOTH headlines and
+   body (warm, lower-contrast, bracketed serifs with lovely italics). Distinct from the
+   "serif" set, which pairs a thin display serif with a sans body. Fits the data-
+   journalism theme; pairs well with the cream & stark palettes. */
+:root[data-font="editorial"] {
+  --display:        "Newsreader", Georgia, "Times New Roman", serif;
+  --display-weight: 600;
+  --sans:           "Newsreader", Georgia, "Times New Roman", serif;
+  --mono:           "Departure Mono", ui-monospace, "JetBrains Mono", monospace;
+}
+
 /* ---- Map reveal.js theme variables -------------------------------------- */
 .reveal {
   --r-background-color: var(--paper);
@@ -250,12 +293,10 @@ html, body, .reveal-viewport { background: var(--paper); }
   line-height: 1.02;
 }
 .reveal section.divider .lead { color: var(--on-dark-soft); }
-/* Title-slide parenthetical aside ("(and more)") — smaller italic gold wink */
-.reveal section.title-slide .title-aside {
-  font-size: 0.4em;
-  font-style: italic;
-  color: var(--gold);
-}
+/* Title slide accents the key phrase with the deck's .hl color — vermillion on the
+   dark background, echoing the closing pull-quote so the talk opens and closes on the
+   same line. (Replaces the old "(and more)" .title-aside, now unused.) */
+.reveal section.title-slide .hl { color: var(--hot); }
 .reveal section.divider .rule {
   width: 3.5em; height: 4px; background: var(--hot);
   border: 0; margin: 0 0 1.2em;

@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Periodismo de datos — David Eads</title>
 
-  <!-- Fonts: free bitmap fallbacks (Google Fonts). MondWest / NeueBit / Departure Mono
-       take over automatically if you drop them into assets/fonts/ — see that folder. -->
+  <!-- Fonts (Google Fonts) for the four switchable font sets — see theme.css
+       :root[data-font="…"]. serif=Fraunces · grotesk=Space Grotesk + IBM Plex ·
+       bitmap=Pixelify Sans + DotGothic16 · editorial=Newsreader. Self-hosted
+       Migra/Departure Mono (in assets/fonts/) take over for the serif set when present. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Pixelify+Sans:wght@400;500;600;700&family=DotGothic16&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Pixelify+Sans:wght@400;500;600;700&family=DotGothic16&family=Space+Grotesk:wght@300..700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- reveal.js core + our theme -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reset.css">
@@ -26,14 +28,21 @@
     <p>then open <code>http://localhost:8000/</code> &nbsp;(add <code>?lang=es</code> for Spanish).</p>
   </div>
 
-  <!-- DEBUG: live palette switcher, persisted in localStorage. Remove when decided. -->
-  <div id="palette-switch" title="Debug palette — saved across reloads">
+  <!-- DEBUG: live palette + font switchers, persisted in localStorage. Remove when decided. -->
+  <div id="palette-switch" title="Debug — palette + fonts, saved across reloads">
     <label for="palette-select">palette</label>
     <select id="palette-select">
       <option value="cream">cream + vermillion</option>
       <option value="terminal">terminal green</option>
       <option value="amber">terminal amber</option>
       <option value="stark">stark modernist</option>
+    </select>
+    <label for="font-select">font</label>
+    <select id="font-select">
+      <option value="serif">serif · Migra/Fraunces</option>
+      <option value="grotesk">grotesk · Space Grotesk</option>
+      <option value="bitmap">bitmap · Pixelify</option>
+      <option value="editorial">editorial · Newsreader</option>
     </select>
   </div>
 
@@ -75,6 +84,18 @@
     paletteSel.addEventListener('change', () => {
       document.documentElement.dataset.theme = paletteSel.value;
       localStorage.setItem(THEME_KEY, paletteSel.value);
+    });
+
+    // --- DEBUG: persistent FONT switcher (?font= overrides; else saved; default serif) ---
+    const FONT_KEY = 'deck-font';
+    const savedFont = new URLSearchParams(location.search).get('font')
+                      || localStorage.getItem(FONT_KEY) || 'serif';
+    document.documentElement.dataset.font = savedFont;
+    const fontSel = document.getElementById('font-select');
+    fontSel.value = savedFont;
+    fontSel.addEventListener('change', () => {
+      document.documentElement.dataset.font = fontSel.value;
+      localStorage.setItem(FONT_KEY, fontSel.value);
     });
 
     Reveal.initialize({

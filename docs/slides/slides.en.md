@@ -1,9 +1,9 @@
-<!-- Using Python (and more) to explore our world — English source. Conventions: see README.md.
+<!-- I wonder if someone is measuring that? — English source. Conventions: see README.md.
      IMAGE-FIRST: slides are images + a tiny kicker. The talk lives in the Note: blocks
      (press S for the speaker view). Keep on-slide text minimal and non-verbatim. -->
 <!-- .slide: class="divider title-slide" data-background-color="var(--dark)" -->
 
-# Using Python<br><span class="title-aside">(and more)</span><br>to explore our world
+# I wonder if someone is<br><span class="hl">measuring that?</span>
 
 <p class="byline">David Eads &nbsp;·&nbsp; davideads@gmail.com<br>recoveredfactory.net</p>
 
@@ -226,15 +226,6 @@ Two alternatives worth knowing: Prefect turns existing Python into pipelines fas
 ---
 
 <figure>
-  <img class="frame book" src="assets/norvig.png" alt="Teach Yourself Programming in Ten Years">
-</figure>
-
-Note:
-A quick tangent. "Data-first versus flow-first" sounds abstract — that understanding only comes with time. Peter Norvig has a wise essay, "Teach Yourself Programming in Ten Years." It's like learning Spanish: we say "sueño contigo" — I dream *with* you — where English says "I dream *of* you." Same idea, different emphasis. Same with these tools.
-
----
-
-<figure>
   <img src="assets/cali-3d.png" alt="Mapas Cali — 3D buildings view of the city">
   <figcaption>354 layers of Cali</figcaption>
 </figure>
@@ -293,74 +284,3 @@ Note:
 That's the whole talk in one line: ask the question, then go check. Thank you.
 
 Links: observablehq.com/@eads/waves-on-my-beach · data.adondevanlosdesaparecidos.org
-
----
-
-<!-- .slide: class="divider" data-background-color="var(--dark)" -->
-
-<span class="tag">Activity</span>
-
-# Your turn
-
-<p class="lead">Pair up — it works best with one person looking things up and prompting, the other exploring the data and building.</p>
-
-Note:
-Your turn. You'll point a Claude skill at Colombian open data and walk the same path as the whole talk — acquire, process, analyze. One tip before you start: pair up. This goes best when one of you is looking things up and steering the conversation while the other explores the data or builds — then trade off.
-
----
-
-<!-- .slide: class="divider steps" data-background-color="var(--dark)" -->
-
-<p class="eyebrow">Get set up</p>
-
-<ol class="steps-list">
-<li>Install Claude Code <em>or</em> Claude Desktop</li>
-<li>Clone the repo — the skill ships inside</li>
-<li>Open Claude Code via CLI, <em>or</em> the cloned folder in Claude Desktop → Code</li>
-</ol>
-
-Note:
-Three steps and you're ready to chat. One — install Claude: either Claude Code (the terminal tool) or Claude Desktop (the app); and have Python 3.10+ locally — this is a Python class, so you run things on your own machine (need a library like pandas later? just ask Claude to install it). Two — clone the class repo; the `colombia-open-data` skill ships inside it, in `.claude/skills/`, so Claude finds it automatically — nothing to copy or install. Three — open the cloned folder in Claude: in Claude Code, run `claude` inside the folder; in Claude Desktop, open the folder and switch to Code. Either way the skill loads automatically and you're ready to ask — which is the next slide.
-
----
-
-<p class="eyebrow">Just ask, in Spanish</p>
-
-<div class="chat">
-  <p class="bubble you"><span class="who">You</span>Búscame el acceso a internet fijo por departamento en Colombia, 2023.</p>
-  <p class="bubble claude"><span class="who">Claude</span>Listo — encontré el dataset en datos.gov.co y, con el skill <code>colombia-open-data</code>, te armé tu propio pipeline: <b>raw → clean → dashboard</b>.</p>
-  <p class="bubble claude">Lo corrí. Top 5 departamentos (2023-T3): Bogotá D.C. 2.251.960 · Antioquia 1.615.103 · Valle del Cauca 916.250 · Cundinamarca 649.508 · Atlántico 470.721</p>
-</div>
-
-Note:
-You don't start by writing code — you just ask, in plain Spanish: "find me fixed-internet access by department, 2023." The skill does more than fetch rows: Claude finds the right dataset on datos.gov.co and **scaffolds a small Dagster pipeline for it — raw → clean → dashboard — your very own**, then runs it. The numbers are just proof it worked (Bogotá leads at 2.25 million). Two lessons are baked into that pipeline. First, it aggregates on the server — `sum()` grouped by department — so it pulls a handful of rows, not 2.8 million. Second, it pins a single quarter (2023-T3), because subscribers are a *stock*, not a flow: adding up every quarter would count the same people twice. You stayed in the language of the question; the skill built the plumbing — and it's yours to keep and change.
-
----
-
-<!-- .slide: class="step" -->
-
-<figure>
-  <img src="assets/activity-html-output.png" alt="A simple HTML bar chart of internet access by department">
-  <figcaption class="step">A page you can share</figcaption>
-</figure>
-
-Note:
-Then ask Claude to turn those numbers into something you can see and share: a simple HTML page — a bar chart, a table, a little map. No framework, no build step, just one file you can open in a browser or send to a friend. That's "visualize and publish," scaled down.
-
----
-
-<p class="eyebrow">Things to try next</p>
-
-<ul>
-  <li>Chart or map something that surprises you.</li>
-  <li>Research how a dataset is actually produced.</li>
-  <li>Look for data that contradicts public rhetoric.</li>
-  <li>Join two datasets — like the laws a politician wrote against the money they've taken.</li>
-</ul>
-
-<p class="lead">And at the end, we'll come back together and share what we found.</p>
-
-Note:
-Where to take it. Chart or map something interesting. Dig into how a dataset is produced — who made it, how, and what's missing. Look for places the data contradicts what people in power say. Join one dataset to another — the legislation a politician has written against the donations they've received is a classic. And remember: pair up, and trade off.
-
-And we'll close the activity together — back as one group, sharing what we found: what surprised you, where you got stuck, what you want to keep digging into.

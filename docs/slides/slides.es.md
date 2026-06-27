@@ -1,4 +1,4 @@
-<!-- Usar Python (y más) para explorar nuestro mundo — versión en español (es).
+<!-- ¿Será que alguien está midiendo eso? — versión en español (es).
      Fuente y convenciones: slides.en.md + README.md. Traducción fiel: la estructura HTML,
      las rutas de imágenes y el código se mantienen idénticos al inglés.
      IMAGE-FIRST: las diapositivas son imágenes + un texto mínimo. La charla vive en los
@@ -6,7 +6,7 @@
      mínimo y no literal. -->
 <!-- .slide: class="divider title-slide" data-background-color="var(--dark)" -->
 
-# Usar Python<br><span class="title-aside">(y más)</span><br>para explorar nuestro mundo
+# ¿Será que alguien está<br><span class="hl">midiendo eso?</span>
 
 <p class="byline">David Eads &nbsp;·&nbsp; davideads@gmail.com<br>recoveredfactory.net</p>
 
@@ -229,15 +229,6 @@ Dos alternativas que vale la pena conocer: Prefect convierte Python existente en
 ---
 
 <figure>
-  <img class="frame book" src="assets/norvig.png" alt="Teach Yourself Programming in Ten Years">
-</figure>
-
-Note:
-Una pequeña digresión. "Data-first frente a flow-first" suena abstracto —esa comprensión solo llega con el tiempo—. Peter Norvig tiene un ensayo sabio, "Teach Yourself Programming in Ten Years" (Aprende a programar en diez años). Es como aprender otro idioma: en español decimos "sueño contigo", mientras que en inglés dicen "I dream *of* you" —sueño *de* ti—. Misma idea, énfasis distinto. Lo mismo pasa con estas herramientas.
-
----
-
-<figure>
   <img src="assets/cali-3d.png" alt="Mapas Cali — vista de edificios en 3D de la ciudad">
   <figcaption>354 capas de Cali</figcaption>
 </figure>
@@ -296,74 +287,3 @@ Note:
 Esa es toda la charla en una sola línea: haz la pregunta y luego ve a verificar. Gracias.
 
 Enlaces: observablehq.com/@eads/waves-on-my-beach · data.adondevanlosdesaparecidos.org
-
----
-
-<!-- .slide: class="divider" data-background-color="var(--dark)" -->
-
-<span class="tag">Actividad</span>
-
-# Les toca
-
-<p class="lead">Trabajen en parejas — funciona mejor con una persona buscando cosas y dándole indicaciones a Claude, y la otra explorando los datos y construyendo.</p>
-
-Note:
-Les toca. Van a apuntar un skill de Claude hacia los datos abiertos de Colombia y a recorrer el mismo camino de toda la charla —adquirir, procesar, analizar—. Un consejo antes de empezar: trabajen en parejas. Esto funciona mejor cuando uno de ustedes va buscando cosas y dirigiendo la conversación mientras el otro explora los datos o construye —y luego se turnan—.
-
----
-
-<!-- .slide: class="divider steps" data-background-color="var(--dark)" -->
-
-<p class="eyebrow">Déjalo listo</p>
-
-<ol class="steps-list">
-<li>Instala Claude Code <em>o</em> Claude Desktop</li>
-<li>Clona el repo — el skill viene adentro</li>
-<li>Abre Claude Code desde la terminal, <em>o</em> la carpeta clonada en Claude Desktop → Code</li>
-</ol>
-
-Note:
-Tres pasos y ya están listos para conversar. Uno — instala Claude: ya sea Claude Code (la herramienta de terminal) o Claude Desktop (la app); y ten Python 3.10+ en tu máquina —esta es una clase de Python, así que corres las cosas en tu propio computador (¿necesitas después una librería como pandas? solo pídele a Claude que la instale)—. Dos — clona el repo de la clase; el skill `colombia-open-data` viene adentro, en `.claude/skills/`, así que Claude lo encuentra automáticamente —no hay que copiar ni instalar nada—. Tres — abre la carpeta clonada en Claude: en Claude Code, corre `claude` dentro de la carpeta; en Claude Desktop, abre la carpeta y cambia a Code. De cualquier forma el skill se carga automáticamente y ya puedes preguntar —que es la siguiente diapositiva—.
-
----
-
-<p class="eyebrow">Solo pregunta, en español</p>
-
-<div class="chat">
-  <p class="bubble you"><span class="who">Tú</span>Búscame el acceso a internet fijo por departamento en Colombia, 2023.</p>
-  <p class="bubble claude"><span class="who">Claude</span>Listo — encontré el dataset en datos.gov.co y, con el skill <code>colombia-open-data</code>, te armé tu propio pipeline: <b>raw → clean → dashboard</b>.</p>
-  <p class="bubble claude">Lo corrí. Top 5 departamentos (2023-T3): Bogotá D.C. 2.251.960 · Antioquia 1.615.103 · Valle del Cauca 916.250 · Cundinamarca 649.508 · Atlántico 470.721</p>
-</div>
-
-Note:
-No empiezas escribiendo código —simplemente preguntas, en español sencillo: "búscame el acceso a internet fijo por departamento, 2023"—. El skill hace más que traer filas: Claude encuentra el dataset correcto en datos.gov.co y **te arma un pequeño pipeline de Dagster para él —raw → clean → dashboard—, tuyo, propio**, y luego lo corre. Los números son apenas la prueba de que funcionó (Bogotá lidera con 2,25 millones). Hay dos lecciones incorporadas en ese pipeline. Primera: agrega en el servidor —`sum()` agrupado por departamento— así que trae un puñado de filas, no 2,8 millones. Segunda: fija un solo trimestre (2023-T3), porque los suscriptores son un *stock*, no un *flujo*: sumar cada trimestre contaría dos veces a las mismas personas. Te quedaste en el lenguaje de la pregunta; el skill armó la plomería —y es tuyo para conservarlo y cambiarlo—.
-
----
-
-<!-- .slide: class="step" -->
-
-<figure>
-  <img src="assets/activity-html-output.png" alt="Una gráfica de barras HTML sencilla del acceso a internet por departamento">
-  <figcaption class="step">Una página que puedes compartir</figcaption>
-</figure>
-
-Note:
-Después pídele a Claude que convierta esos números en algo que puedas ver y compartir: una página HTML sencilla —una gráfica de barras, una tabla, un mapita—. Sin framework, sin paso de compilación, solo un archivo que puedes abrir en el navegador o enviarle a alguien. Eso es "visualizar y publicar", a pequeña escala.
-
----
-
-<p class="eyebrow">Cosas para probar después</p>
-
-<ul>
-  <li>Grafica o mapea algo que te sorprenda.</li>
-  <li>Investiga cómo se produce realmente un dataset.</li>
-  <li>Busca datos que contradigan el discurso público.</li>
-  <li>Cruza dos datasets — como las leyes que escribió un político frente a la plata que ha recibido.</li>
-</ul>
-
-<p class="lead">Y al final, nos reunimos de nuevo para compartir lo que encontramos.</p>
-
-Note:
-Hacia dónde llevarlo. Grafica o mapea algo interesante. Indaga cómo se produce un dataset —quién lo hizo, cómo, y qué falta—. Busca lugares donde los datos contradicen lo que dice la gente con poder. Cruza un dataset con otro —la legislación que ha escrito un político frente a las donaciones que ha recibido es un clásico—. Y recuerden: trabajen en parejas y túrnense.
-
-Y vamos a cerrar la actividad todos juntos —de vuelta como un solo grupo, compartiendo lo que encontramos: qué te sorprendió, dónde te atascaste, qué quieres seguir explorando—.
